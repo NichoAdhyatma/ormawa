@@ -17,8 +17,6 @@ defineProps({
 
 const showingNavigationDropdown = ref(false);
 
-
-
 const theme = ref('light');
 
 if (localStorage.getItem("theme")) {
@@ -36,13 +34,13 @@ const handleTheme = () => {
     }
 }
 
-const switchToTeam = (team) => {
-    Inertia.put(route('current-team.update'), {
-        team_id: team.id,
-    }, {
-        preserveState: false,
-    });
-};
+// const switchToTeam = (team) => {
+//     Inertia.put(route('current-team.update'), {
+//         team_id: team.id,
+//     }, {
+//         preserveState: false,
+//     });
+// };
 
 const logout = () => {
     Inertia.post(route('logout'));
@@ -180,8 +178,12 @@ const logout = () => {
                                     <template #trigger>
                                         <button v-if="$page.props.jetstream.managesProfilePhotos"
                                             class="flex text-sm border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300 transition">
-                                            <img class="h-8 w-8 rounded-full object-cover"
-                                                :src="$page.props.user.profile_photo_url" :alt="$page.props.user.name">
+                                            <div class="indicator">
+                                                <span class="indicator-item badge badge-xs badge-success"></span>
+                                                <img class="h-8 w-8 rounded-full object-cover"
+                                                    :src="$page.props.user.profile_photo_url"
+                                                    :alt="$page.props.user.name">
+                                            </div>
                                         </button>
 
                                         <span v-else class="inline-flex rounded-md">
@@ -202,7 +204,7 @@ const logout = () => {
                                     <template #content>
                                         <!-- Account Management -->
                                         <div class="block px-4 py-2 text-xs text-gray-400">
-                                            Manage Ac count
+                                            Manage Account
                                         </div>
 
                                         <DropdownLink :href="route('profile.show')">
@@ -307,7 +309,8 @@ const logout = () => {
                         </div>
 
                         <div class="mt-3 space-y-1">
-                            <ResponsiveNavLink :href="route('profile.show')" class="!text-base-content" :active="route().current('profile.show')">
+                            <ResponsiveNavLink :href="route('profile.show')" class="!text-base-content"
+                                :active="route().current('profile.show')">
                                 Profile
                             </ResponsiveNavLink>
 
