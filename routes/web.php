@@ -1,8 +1,9 @@
 <?php
 
-use Illuminate\Foundation\Application;
-use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Foundation\Application;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,6 +31,14 @@ Route::middleware([
     'verified',
 ])->group(function () {
     Route::get('/dashboard', function () {
-        return Inertia::render('Dashboard');
+        return Inertia::render('Dashboard', [
+            'user' => Auth::user()
+        ]);
     })->name('dashboard');
+
+    Route::get('ormawa', function () {
+        return Inertia::render('MyOrmawa', [
+            'user' => Auth::user()
+        ]);
+    })->name('myormawa');
 });
