@@ -2,6 +2,8 @@
 import { Link } from '@inertiajs/inertia-vue3';
 import { ref } from 'vue';
 import ApplicationMark from '@/Components/ApplicationMark.vue';
+import { Inertia } from '@inertiajs/inertia';
+import PrimaryButton from '@/Components/PrimaryButton.vue';
 
 const theme = ref('light');
 
@@ -19,43 +21,33 @@ const handleTheme = () => {
     theme.value = 'light'
   }
 }
+
+const logout = (e) => {
+  e.preventDefault();
+  Inertia.post(route('logout'));
+};
 </script>
 
 <template>
-  <div :data-theme="theme">
-    <div class="navbar bg-base-100 fixed top-0 z-20 shadow">
-      <div class="navbar-start">
+  <div :data-theme="theme" >
+    <!--Navbar-->
+    <div class="navbar bg-base-100 fixed top-0 z-20 drop-shadow-md">
+      <div class="flex-1">
+        <Link :href="route('home')" class="btn btn-ghost normal-case text-xl">
+          <ApplicationMark />
+        </Link>
         <div class="dropdown">
-          <label tabindex="0" class="btn btn-ghost btn-circle">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
-              stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7" />
-            </svg>
-          </label>
-          <ul tabindex="0" class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
-            <li v-if="$page.props.user">
-              <Link :href="route('dashboard')" class="text-sm">Dashboard</Link>
-            </li>
-            <template v-else>
-              <li>
-                <Link :href="route('login')" class="text-sm">Log in
-                </Link>
-              </li>
-              <li>
-                <Link :href="route('register')" class="text-sm">Register</Link>
-              </li>
-            </template>
+          <label tabindex="0" class="cursor-pointer">Organisasi</label>
+          <ul tabindex="0" class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-96">
+            <li><Link href="/category/1">Himpunan Mahasiswa Aktif (HIMA)</Link></li>
+            <li><Link >Unit Kegiatan Mahasiswa (UKM)</Link></li>
+            <li><Link >Badan Eksekutif Mahasiswa (BEM)</Link></li>
+            <li><Link>Komunitas</Link></li>
           </ul>
         </div>
       </div>
-      <div class="navbar-center">
-        <a class="btn btn-ghost w-24">
-          <ApplicationMark />
-        </a>
-      </div>
-      <div class="navbar-end mr-4">
-        <!--Theme-->
-        <label class="swap swap-rotate">
+      <div class="flex-none">
+        <label class="swap swap-rotate mr-5">
           <!-- this hidden checkbox controls the state -->
           <input type="checkbox" class="opacity-0" @click="handleTheme" />
 
@@ -70,10 +62,34 @@ const handleTheme = () => {
             <path
               d="M21.64,13a1,1,0,0,0-1.05-.14,8.05,8.05,0,0,1-3.37.73A8.15,8.15,0,0,1,9.08,5.49a8.59,8.59,0,0,1,.25-2A1,1,0,0,0,8,2.36,10.14,10.14,0,1,0,22,14.05,1,1,0,0,0,21.64,13Zm-9.5,6.69A8.14,8.14,0,0,1,7.08,5.22v.27A10.15,10.15,0,0,0,17.22,15.63a9.79,9.79,0,0,0,2.1-.22A8.11,8.11,0,0,1,12.14,19.73Z" />
           </svg>
-
         </label>
 
+        <div v-if="$page.props.user" class="dropdown dropdown-end">
+          <label tabindex="0" class="btn btn-ghost btn-circle avatar">
+            <div class="w-10 rounded-full">
+              <img src="https://placeimg.com/80/80/people" />
+            </div>
+          </label>
+          <ul tabindex="0" class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52 z-30">
+            <li>
+              <Link :href="route('dashboard')">Dashboard</Link>
+            </li>
+            <li>
+              <form class="w-full" :onsubmit=logout>
+                <button>
+                  Log Out
+                </button>
+              </form>
+            </li>
+          </ul>
+        </div>
 
+        <div v-else class="flex items-center gap-3 mr-5">
+          <Link :href="route('login')">
+          <PrimaryButton>Login</PrimaryButton>
+          </Link>
+          <Link :href="route('register')" class="text-primary font-bold">Register</Link>
+        </div>
       </div>
     </div>
 
@@ -85,7 +101,7 @@ const handleTheme = () => {
     </header>
 
     <!-- Page Content -->
-    <main>
+    <main class="min-h-screen pt-24">
       <slot />
     </main>
 

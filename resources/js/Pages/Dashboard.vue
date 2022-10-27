@@ -5,7 +5,6 @@ import Welcome from '@/Components/Welcome.vue';
 const props = defineProps({
     user: Object,
 });
-
 </script>
 
 <template>

@@ -13,4 +13,7 @@
   border-radius: 10px;
 }
 
+body {
+  min-height: 100vh;
+}
 

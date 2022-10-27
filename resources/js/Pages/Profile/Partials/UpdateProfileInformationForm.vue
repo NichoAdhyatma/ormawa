@@ -9,6 +9,7 @@ import InputLabel from '@/Components/InputLabel.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import SecondaryButton from '@/Components/SecondaryButton.vue';
 import TextInput from '@/Components/TextInput.vue';
+import DangerButton from "@/Components/DangerButton.vue";
 
 const props = defineProps({
     user: Object,
@@ -116,14 +117,14 @@ const clearPhotoFileInput = () => {
                     Select A New Photo
                 </SecondaryButton>
 
-                <SecondaryButton
+                <DangerButton
                     v-if="user.profile_photo_path"
                     type="button"
                     class="mt-2"
                     @click.prevent="deletePhoto"
                 >
                     Remove Photo
-                </SecondaryButton>
+                </DangerButton>
 
                 <InputError :message="form.errors.photo" class="mt-2" />
             </div>

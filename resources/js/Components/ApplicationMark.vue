@@ -1,3 +1,3 @@
 <template>
-    <img src="/logo_ormawa.png" alt="logo_ormawa">
+    <span>Ormawa<span class="text-primary">PENS</span></span>
 </template>

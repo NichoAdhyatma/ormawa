@@ -4,6 +4,8 @@ use Inertia\Inertia;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Application;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\OrganisasiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,7 +25,13 @@ Route::get('/', function () {
         'laravelVersion' => Application::VERSION,
         'phpVersion' => PHP_VERSION,
     ]);
-});
+})->name('home');
+
+Route::resource('/organisasi', OrganisasiController::class)->names([
+    'index' => 'organisasi.index'
+]);
+
+Route::resource('/category', CategoryController::class)->only(['show']);
 
 Route::middleware([
     'auth:sanctum',

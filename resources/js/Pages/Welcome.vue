@@ -1,7 +1,7 @@
 <script setup>
-import { Head, Link } from '@inertiajs/inertia-vue3';
-import ApplicationMark from '@/Components/ApplicationMark.vue';
+import { Head } from '@inertiajs/inertia-vue3';
 import PageLayout from '@/Layouts/PageLayout.vue';
+import ApplicationMark from '../Components/ApplicationMark.vue';
 
 defineProps({
     laravelVersion: String,
@@ -14,13 +14,15 @@ defineProps({
     <Head title="Welcome" />
     <PageLayout>
         <main>
-            <div class="relative flex items-top justify-center min-h-screen bg-base-100 sm:items-center sm:pt-0">
+            <div data-aos="fade-left" data-aos-duration>
                 <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
                     <div class="flex items-center justify-center pt-8 pb-5 sm:justify-start sm:pt-0">
-                        <h1 class="text-4xl font-bold">HomePage Ormawa</h1>
+                        <h1 class="text-2xl">
+                            <ApplicationMark />
+                        </h1>
                     </div>
 
-                    <div class="bg-base-200 grid grid-cols-1 md:grid-cols-2">
+                    <div class="bg-base-200 grid grid-cols-1 lg:grid-cols-2">
                         <div class="p-6">
                             <div class="flex items-center">
                                 <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"

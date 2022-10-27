@@ -6,8 +6,12 @@ import { createInertiaApp } from '@inertiajs/inertia-vue3';
 import { InertiaProgress } from '@inertiajs/progress';
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
 import { ZiggyVue } from '../../vendor/tightenco/ziggy/dist/vue.m';
+import AOS from "aos";
+import 'aos/dist/aos.css'
+
 
 const appName = window.document.getElementsByTagName('title')[0]?.innerText || 'Laravel';
+
 
 createInertiaApp({
     title: (title) => `${title} - ${appName}`,
@@ -20,4 +24,7 @@ createInertiaApp({
     },
 });
 
+AOS.init();
 InertiaProgress.init({ color: '#4B5563' });
+
+

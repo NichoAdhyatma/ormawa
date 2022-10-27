@@ -21,6 +21,7 @@
         "vue": "^3.2.31"
     },
     "dependencies": {
+        "aos": "^2.3.4",
         "daisyui": "^2.31.0",
         "theme-change": "^2.2.0"
     }

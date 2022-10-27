@@ -64,8 +64,8 @@ const logout = () => {
                         <div class="flex">
                             <!-- Logo -->
                             <div class="shrink-0 flex items-center">
-                                <Link :href="route('dashboard')">
-                                <ApplicationMark class="block h-9 w-auto" />
+                                <Link :href="route('home')">
+                                <ApplicationMark/>
                                 </Link>
                             </div>
 
@@ -249,7 +249,6 @@ const logout = () => {
                             </svg>
 
                         </label>
-
 
 
                         <!-- Hamburger -->
