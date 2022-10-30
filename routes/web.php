@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Application;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\OrganisasiController;
+use App\Http\Controllers\OrmawaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,14 +40,12 @@ Route::middleware([
     'verified',
 ])->group(function () {
     Route::get('/dashboard', function () {
-        return Inertia::render('Dashboard', [
-            'user' => Auth::user()
-        ]);
+        return Inertia::render('Dashboard');
     })->name('dashboard');
 
-    Route::get('ormawa', function () {
-        return Inertia::render('MyOrmawa', [
-            'user' => Auth::user()
-        ]);
-    })->name('myormawa');
+    Route::resource('/ormawa', OrmawaController::class)->names(
+        [
+            'index' => 'myormawa'
+        ]
+    );
 });

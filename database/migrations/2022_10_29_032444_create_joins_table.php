@@ -13,16 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('organisasis', function (Blueprint $table) {
+        Schema::create('joins', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('slug')->nullable();
-            $table->foreignId('category_id');
-            $table->string('visi');
-            $table->string('misi');
-            $table->string('desc');
-            $table->string('url')->nullable();
-            $table->string('photo_url', 2048)->nullable();
+            $table->foreignId('user_id');
+            $table->foreignId('organisasi_id');
+            $table->boolean('status');
             $table->timestamps();
         });
     }
@@ -34,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('organisasis');
+        Schema::dropIfExists('joins');
     }
 };

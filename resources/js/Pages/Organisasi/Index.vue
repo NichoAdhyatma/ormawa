@@ -24,7 +24,7 @@ defineProps({
             <p>{{ item.visi }}</p>
             <p>{{ item.misi }}</p>
             <div class="card-actions justify-end">
-              <Link class="underline text-primary font-bold">Learn More</Link>
+              <a :href="item.url"  class="underline text-primary font-bold cursor-pointer">Learn More</a>
             </div>
           </div>
         </div>

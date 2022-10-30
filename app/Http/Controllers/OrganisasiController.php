@@ -3,14 +3,22 @@
 namespace App\Http\Controllers;
 
 use Inertia\Inertia;
+use Illuminate\Support\Facades\Route;
 use Inertia\Controller;
 use App\Models\Organisasi;
-use Illuminate\Support\Facades\Route;
 use App\Http\Requests\StoreOrganisasiRequest;
 use App\Http\Requests\UpdateOrganisasiRequest;
 
 class OrganisasiController extends Controller
 {
+    public function __construct()
+    {
+        Route::middleware(
+            'auth:sanctum',
+            config('jetstream.auth_session'),
+            'verified'
+        );
+    }
     /**
      * Display a listing of the resource.
      *
@@ -18,6 +26,7 @@ class OrganisasiController extends Controller
      */
     public function index()
     {
+        
     }
 
     /**
@@ -49,8 +58,7 @@ class OrganisasiController extends Controller
      */
     public function show(Organisasi $organisasi)
     {
-
-       
+        //  
     }
 
     /**
