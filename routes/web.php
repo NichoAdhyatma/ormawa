@@ -28,9 +28,7 @@ Route::get('/', function () {
     ]);
 })->name('home');
 
-Route::resource('/organisasi', OrganisasiController::class)->names([
-    'index' => 'organisasi.index'
-]);
+Route::resource('/organisasi', OrganisasiController::class);
 
 Route::resource('/category', CategoryController::class)->only(['show']);
 
@@ -43,9 +41,5 @@ Route::middleware([
         return Inertia::render('Dashboard');
     })->name('dashboard');
 
-    Route::resource('/ormawa', OrmawaController::class)->names(
-        [
-            'index' => 'myormawa'
-        ]
-    );
+    Route::resource('/ormawa', OrmawaController::class);
 });

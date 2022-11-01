@@ -16,10 +16,10 @@ defineProps({
         <main>
             <div class="max-w-7xl flex flex-col lg:flex-row items-center px-6 lg:px-8">
                 <div>
-                    <img src="/asset/landing-img.png" alt="img-landing">
+                    <img src="/asset/landing-img.png" alt="img-landing" class="w-75 sm:w-100">
                 </div>
                 <div class="flex flex-col items-start justify-start">
-                    <h1 class="text-5xl text-center">
+                    <h1 class="text-2xl sm:text-5xl text-center">
                         <ApplicationMark />
                     </h1>
                     <p class="opacity-75">Website Resmi Organisasi Mahasiwa</p>

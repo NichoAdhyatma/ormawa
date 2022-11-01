@@ -74,7 +74,7 @@ const logout = () => {
                                 <NavLink :href="route('dashboard')" :active="route().current('dashboard')">
                                     Dashboard
                                 </NavLink>
-                                <NavLink :href="route('myormawa')" :active="route().current('myormawa')">
+                                <NavLink :href="route('ormawa.index')" :active="route().current('ormawa.index')">
                                     MyOrmawa
                                 </NavLink>
                             </div>
@@ -289,7 +289,7 @@ const logout = () => {
                         <ResponsiveNavLink :href="route('dashboard')" :active="route().current('dashboard')">
                             Dashboard
                         </ResponsiveNavLink>
-                        <ResponsiveNavLink :href="route('myormawa')" :active="route().current('myormawa')">
+                        <ResponsiveNavLink :href="route('ormawa.index')" :active="route().current('ormawa.index')">
                             MyOrmawa
                         </ResponsiveNavLink>
                     </div>
@@ -385,14 +385,9 @@ const logout = () => {
             </header>
 
             <!-- Page Content -->
-            <main class="flex flex-col items-center py-12 min-h-screen">
+            <main class="flex flex-col items-center p-5 min-h-screen max-w-7xl mx-auto py-12">
                 <slot />
             </main>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
-                <path fill="#f3f4f5" fill-opacity="1"
-                    d="M0,32L21.8,58.7C43.6,85,87,139,131,138.7C174.5,139,218,85,262,85.3C305.5,85,349,139,393,154.7C436.4,171,480,149,524,160C567.3,171,611,213,655,202.7C698.2,192,742,128,785,117.3C829.1,107,873,149,916,160C960,171,1004,149,1047,154.7C1090.9,160,1135,192,1178,197.3C1221.8,203,1265,181,1309,149.3C1352.7,117,1396,75,1418,53.3L1440,32L1440,320L1418.2,320C1396.4,320,1353,320,1309,320C1265.5,320,1222,320,1178,320C1134.5,320,1091,320,1047,320C1003.6,320,960,320,916,320C872.7,320,829,320,785,320C741.8,320,698,320,655,320C610.9,320,567,320,524,320C480,320,436,320,393,320C349.1,320,305,320,262,320C218.2,320,175,320,131,320C87.3,320,44,320,22,320L0,320Z">
-                </path>
-            </svg>
 
         </div>
     </div>

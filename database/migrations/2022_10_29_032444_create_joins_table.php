@@ -17,7 +17,9 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id');
             $table->foreignId('organisasi_id');
-            $table->boolean('status');
+            $table->string('file_cv')->nullable();
+            $table->string('file_porto')->nullable();
+            $table->boolean('status')->default(false);
             $table->timestamps();
         });
     }

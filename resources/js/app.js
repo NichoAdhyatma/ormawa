@@ -10,6 +10,7 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import { OhVueIcon, addIcons } from "oh-vue-icons";
 import { BiPersonFill, IoNotificationsSharp } from "oh-vue-icons/icons";
+import { Inertia } from "@inertiajs/inertia";
 
 const appName =
     window.document.getElementsByTagName("title")[0]?.innerText || "Laravel";
@@ -32,4 +33,19 @@ createInertiaApp({
 
 AOS.init();
 addIcons(BiPersonFill, IoNotificationsSharp);
-InertiaProgress.init({ color: "#4B5563" });
+// InertiaProgress.init({ color: "blue" });
+InertiaProgress.init({
+    // The delay after which the progress bar will
+    // appear during navigation, in milliseconds.
+    delay: 250,
+
+    // The color of the progress bar.
+    color: "#29d",
+
+    // Whether to include the default NProgress styles.
+    includeCSS: true,
+
+    // Whether the NProgress spinner will be shown.
+    showSpinner: false,
+});
+

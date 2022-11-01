@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Join;
+use App\Models\Organisasi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
+use Illuminate\Support\Facades\Validator;
 
 class OrmawaController extends Controller
 {
@@ -30,7 +32,10 @@ class OrmawaController extends Controller
      */
     public function create()
     {
-        //
+        $organisasi = Organisasi::all();
+        return Inertia::render('Dashboard/FormDaftar', [
+            'organisasi' => $organisasi
+        ]);
     }
 
     /**
@@ -41,7 +46,22 @@ class OrmawaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'organisasi_id' => 'required',
+            'file_cv' => 'required|mimes:pdf',
+            'file_porto' => 'nullable|mimes:pdf'
+        ]);
+
+        if (Join::where('organisasi_id', $request->organisasi_id)
+                ->where('user_id', Auth::user()->id)->count() > 0) {
+            return back()->with('fail', 'maaf anda sudah mendaftar di organiasi ini');
+        }
+
+        $validatedData['file_cv'] = $request->file('file_cv')->store('cv');
+        $validatedData['user_id'] = Auth::user()->id;
+
+        Join::create($validatedData);
+        return back()->with('message', 'anda sudah mendaftar');
     }
 
     /**

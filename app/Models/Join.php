@@ -10,6 +10,7 @@ class Join extends Model
 {
     use HasFactory;
     public $with = ['organisasi'];
+    protected $guarded = ['id'];
 
     public function organisasi() {
         return $this->belongsTo(Organisasi::class, 'organisasi_id');
