@@ -49,19 +49,21 @@ class OrmawaController extends Controller
         $validatedData = $request->validate([
             'organisasi_id' => 'required',
             'file_cv' => 'required|mimes:pdf',
-            'file_porto' => 'nullable|mimes:pdf'
+            'file_porto' => 'required|mimes:pdf'
         ]);
 
         if (Join::where('organisasi_id', $request->organisasi_id)
                 ->where('user_id', Auth::user()->id)->count() > 0) {
-            return back()->with('fail', 'maaf anda sudah mendaftar di organiasi ini');
+            return back()->with('fail', 'maaf anda sudah mendaftar di organiasi ini!');
         }
 
-        $validatedData['file_cv'] = $request->file('file_cv')->store('cv');
+        $validatedData['file_cv'] = $request->file('file_cv')->store('/public/cv');
+        $validatedData['file_porto'] = $request->file('file_porto')->store('/public/porto');
+
         $validatedData['user_id'] = Auth::user()->id;
 
         Join::create($validatedData);
-        return back()->with('message', 'anda sudah mendaftar');
+        return back()->with('message', 'anda sudah mendaftar!');
     }
 
     /**

@@ -17,7 +17,7 @@ const form = useForm({
 
 const submit = () => {
   form.post(route('ormawa.store'), {
-    onFinish: () => {form.reset('organisasi_id')}
+    onFinish: () => { form.reset('organisasi_id') }
   });
 };
 </script>
@@ -39,6 +39,17 @@ const submit = () => {
           <span v-if="$page.props.flash.fail">{{ $page.props.flash.fail }}</span>
         </div>
       </div>
+
+      <div v-if="$page.props.flash.message" class="alert alert-success shadow-lg">
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current flex-shrink-0 h-6 w-6" fill="none"
+            viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          <span v-if="$page.props.flash.message">{{ $page.props.flash.message }}</span>
+        </div>
+      </div>
       <form @submit.prevent="submit" class="mt-12 bg-base-200 p-4 rounded-md">
         <div class="mt-3">
           <InputLabel for="organisasi_id" value="Pilih Organisasi" />
@@ -58,7 +69,7 @@ const submit = () => {
 
         <div class="mt-4">
           <InputLabel for="file_porto" value="Upload Porto Folio (tidak wajib)" />
-          <input v-on:change="form.file_porto" id="file_porto" type="file"
+          <input @input="form.file_porto = $event.target.files[0]" id="file_porto" type="file"
             class="file-input file-input-bordered file-input-primary w-full max-w-xs mt-1" />
           <InputError class="mt-2" :message="form.errors.file_porto" />
         </div>
