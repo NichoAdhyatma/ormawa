@@ -43,3 +43,7 @@ Route::middleware([
 
     Route::resource('/ormawa', OrmawaController::class);
 });
+
+Route::get('/template', function () {
+    return Inertia::render('Dashboard/Template');
+})->middleware(['auth:web', config('jetstream.auth_session')]);

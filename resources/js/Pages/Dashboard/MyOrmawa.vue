@@ -16,7 +16,7 @@ defineProps({
       </h2>
     </template>
 
-    <main class="p-3">
+    <main>
       <TableLayout>
         <template #table>
           <div class="stats shadow mb-4 overflow-x-auto w-full">
@@ -53,8 +53,8 @@ defineProps({
 
       <div class="flex flex-col items-center flex-wrap p-3">
         <h1 class="text-bold mb-5 text-2xl">Organisasi</h1>
-        <p class="text-blue-700 text-xs text-center">Anda bisa mendaftarkan diri anda melalui link berikut <Link
-            class="cursor-p
+        <p class="text-blue-700 text-xs text-center">Anda bisa mendaftarkan diri anda melalui link berikut
+          <Link class="cursor-p
             ointer underline font-bold" :href="route('ormawa.create')">Daftar Organisasi</Link>
         </p>
       </div>
@@ -91,11 +91,17 @@ defineProps({
                     </div>
                   </td>
                   <td>
-                    <div v-if="item.status" class="text-success font-semibold">
-                      <p>Accepted </p>
+                    <div v-if="item.status">
+                      <span
+                        class="text-xs font-semibold inline-block py-1 px-2 rounded text-emerald-600 bg-emerald-200 uppercase last:mr-0 mr-1">
+                        Accepted
+                      </span>
                     </div>
-                    <div v-else class="text-warning font-semibold">
-                      <p>Pending</p>
+                    <div v-else>
+                      <span
+                        class="text-xs font-semibold inline-block py-1 px-2 rounded text-amber-600 bg-amber-200 uppercase last:mr-0 mr-1">
+                        Pending
+                      </span>
                     </div>
                   </td>
                   <th>

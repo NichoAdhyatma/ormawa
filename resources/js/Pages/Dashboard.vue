@@ -1,4 +1,4 @@
-<script setup>
+m<script setup>
 import AppLayout from '@/Layouts/AppLayout.vue';
 import Welcome from '@/Components/Welcome.vue';
 </script>
@@ -11,12 +11,12 @@ import Welcome from '@/Components/Welcome.vue';
             </h2>
         </template>
 
-        <div class="py-12">
+        <main>
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
                     <Welcome :username="$page.props.user.name"/>
                 </div>
             </div>
-        </div>
+        </main>
     </AppLayout>
 </template>

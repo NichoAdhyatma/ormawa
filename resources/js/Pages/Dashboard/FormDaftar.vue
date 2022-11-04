@@ -25,6 +25,7 @@ const submit = () => {
   <AppLayout title="Form Pendaftaran - Ormawa">
     <template #header>
       <h1>Form Pendaftaran Organisasi</h1>
+
     </template>
 
     <main>

@@ -8,7 +8,7 @@ defineProps({
 
 <template>
     <div>
-        <div class="p-6 sm:px-20 bg-base-200 border-b border-base-300">
+        <div class="p-6 bg-base-200 border-b border-base-300">
             <div class="mt-8 text-2xl">
                 Welcome <span class="font-bold text-primary"> {{ username }} </span>
             </div>
