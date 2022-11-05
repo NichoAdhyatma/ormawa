@@ -41,6 +41,10 @@ class HandleInertiaRequests extends Middleware
                 'message' => fn () => $request->session()->get('message'),
                 'fail' => fn () => $request->session()->get('fail')
             ],
+
+            'admin' => [
+                'tes' => 'ini admin'
+            ]
         ]);
     }
 }

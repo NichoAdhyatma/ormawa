@@ -9,7 +9,7 @@ import { ZiggyVue } from "../../vendor/tightenco/ziggy/dist/vue.m";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { OhVueIcon, addIcons } from "oh-vue-icons";
-import { BiPersonFill, IoNotificationsSharp } from "oh-vue-icons/icons";
+import { BiPersonFill, IoNotificationsSharp, MdFolder, ViFileTypePdf2 } from "oh-vue-icons/icons";
 import { Inertia } from "@inertiajs/inertia";
 
 const appName =
@@ -32,7 +32,7 @@ createInertiaApp({
 });
 
 AOS.init();
-addIcons(BiPersonFill, IoNotificationsSharp);
+addIcons(BiPersonFill, IoNotificationsSharp, MdFolder, ViFileTypePdf2);
 // InertiaProgress.init({ color: "blue" });
 InertiaProgress.init({
     // The delay after which the progress bar will

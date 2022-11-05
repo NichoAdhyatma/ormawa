@@ -106,15 +106,6 @@ class DatabaseSeeder extends Seeder
             'photo_url' => ''
         ]);
         
-        Organisasi::factory()->create([
-            'name' => 'UKM Robotika',
-            'category_id' => '2',
-            'desc' => 'ini deskripsi himpunan',
-            'visi' => 'ini visi himpunan',
-            'misi' => 'ini misi himpunan',
-            'photo_url' => ''
-        ]);
-        
         Category::create([
             'name' => 'Himpunan Mahasiswa',
             'slug' => 'HIMA'

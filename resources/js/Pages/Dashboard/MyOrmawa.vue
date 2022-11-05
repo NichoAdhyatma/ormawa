@@ -10,10 +10,8 @@ defineProps({
 
 <template>
   <AppLayout title="My-Ormawa">
-    <template #header>
-      <h2 class="font-semibold text-xl leading-tight">
-        My Ormawa
-      </h2>
+    <template #title>
+        Ormawa Management
     </template>
 
     <main>
@@ -24,7 +22,7 @@ defineProps({
               <div class="stat-figure text-primary">
               </div>
               <div class="stat-title">Total SKS</div>
-              <div class="stat-value text-primary">19</div>
+              <div class="stat-value text-info">19</div>
               <div class="stat-desc">SKS semester 3</div>
             </div>
 
@@ -53,7 +51,7 @@ defineProps({
 
       <div class="flex flex-col items-center flex-wrap p-3">
         <h1 class="text-bold mb-5 text-2xl">Organisasi</h1>
-        <p class="text-blue-700 text-xs text-center">Anda bisa mendaftarkan diri anda melalui link berikut
+        <p class="text-blue-500 text-xs text-center">Anda bisa mendaftarkan diri anda melalui link berikut
           <Link class="cursor-p
             ointer underline font-bold" :href="route('ormawa.create')">Daftar Organisasi</Link>
         </p>
@@ -82,7 +80,7 @@ defineProps({
                     <div class="flex items-center space-x-3">
                       <div class="flex items-center gap-3">
                         <div class="mask mask-squircle w-12 h-12">
-                          <img :src="item.organisasi.photo_url" alt="Avatar Tailwind CSS Component" />
+                          <img v-if="item.organisasi.photo_url" :src="item.organisasi.photo_url" alt="Avatar Tailwind CSS Component" />
                         </div>
                         {{ item.organisasi.slug }}
                       </div>

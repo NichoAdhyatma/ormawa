@@ -4,9 +4,11 @@ use Inertia\Inertia;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Application;
+use Illuminate\Support\Facades\Storage;
+use App\Http\Controllers\FileController;
+use App\Http\Controllers\OrmawaController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\OrganisasiController;
-use App\Http\Controllers\OrmawaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,9 +43,15 @@ Route::middleware([
         return Inertia::render('Dashboard');
     })->name('dashboard');
 
-    Route::resource('/ormawa', OrmawaController::class);
+    Route::resource('/dashboard/ormawa', OrmawaController::class);
+
+    Route::resource('/dashboard/file', FileController::class);
 });
 
 Route::get('/template', function () {
     return Inertia::render('Dashboard/Template');
 })->middleware(['auth:web', config('jetstream.auth_session')]);
+
+Route::get('/download/{path}', function ($path) {
+    return Storage::download($path);
+});

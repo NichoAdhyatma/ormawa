@@ -17,7 +17,7 @@ const form = useForm({
 
 const submit = () => {
   form.post(route('ormawa.store'), {
-    onFinish: () => { form.reset('organisasi_id') }
+    onFinish: () => { form.reset() }
   });
 };
 </script>
@@ -30,7 +30,8 @@ const submit = () => {
 
     <main>
       <h1 class="text-2xl font-bold">Ini Form Pendaftaran Ya Cuy ..</h1>
-      <div v-if="$page.props.flash.fail" class="alert alert-error shadow-lg  mt-2">
+
+      <div v-if="$page.props.flash.fail" class="alert alert-error shadow-lg mt-5">
         <div>
           <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current flex-shrink-0 h-6 w-6" fill="none"
             viewBox="0 0 24 24">
@@ -41,7 +42,7 @@ const submit = () => {
         </div>
       </div>
 
-      <div v-if="$page.props.flash.message" class="alert alert-success shadow-lg">
+      <div v-if="$page.props.flash.message" class="alert alert-success shadow-lg mt-5">
         <div>
           <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current flex-shrink-0 h-6 w-6" fill="none"
             viewBox="0 0 24 24">
@@ -51,7 +52,8 @@ const submit = () => {
           <span v-if="$page.props.flash.message">{{ $page.props.flash.message }}</span>
         </div>
       </div>
-      <form @submit.prevent="submit" class="mt-12 bg-base-200 p-4 rounded-md">
+
+      <form @submit.prevent="submit" class="mt-5 bg-base-200 p-4 rounded-md">
         <div class="mt-3">
           <InputLabel for="organisasi_id" value="Pilih Organisasi" />
           <select id="organisasi_id" v-model="form.organisasi_id" class="select select-bordered w-full max-w-xs mt-1">
@@ -74,10 +76,6 @@ const submit = () => {
             class="file-input file-input-bordered file-input-primary w-full max-w-xs mt-1" />
           <InputError class="mt-2" :message="form.errors.file_porto" />
         </div>
-
-        <progress v-if="form.progress" :value="form.progress.percentage" max="100">
-          {{ form.progress.percentage }}%
-        </progress>
 
         <button :class="{ 'opacity-25': form.processing }" :disabled="form.processing"
           class="mt-3 bg-primary text-white p-2 rounded-md cursor-pointer">Submit</button>
