@@ -1,27 +1,53 @@
 <script setup>
 import AppLayout from '@/Layouts/AppLayout.vue';
-import CardVue from '@/Components/Card.vue';
 import { Link, useForm } from '@inertiajs/inertia-vue3';
 import InputError from '@/Components/InputError.vue';
 import InputLabel from '@/Components/InputLabel.vue';
 import TableLayout from "@/Components/TableLayout.vue";
+import { inject } from 'vue'
+import { Inertia } from '@inertiajs/inertia'
 
 defineProps({
-  files: Object
+  files: Object,
+  status: Boolean,
+  errors: Object,
 })
 
-const form = useForm({
+const swal = inject('$swal')
+
+const file = useForm({
+  file_cv: null,
+  file_cv_name:null,
   file_porto: null,
-  file_cv: null
+  file_porto_name:null
 })
 
-const submit = () => {
-  form.post(route('file.store'), {
-    onFinish: () => {
-      form.reset('file_cv', 'file_porto')
+const form = useForm()
+
+const submit = (event) => {
+  swal.fire({
+    title: 'Are you sure?',
+    text: "You won't be able to revert this!",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Yes, delete it!'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      form.post(route('file.store'))
     }
+  });
+}
+
+const update = (id) => {
+  Inertia.post('/dashboard/file/' + `${id}`, {
+    _method: 'put',
+    file_cv: file.file_cv,
+    file_porto: file.file_porto
   })
 }
+
 </script>
 
 <template>
@@ -34,7 +60,7 @@ const submit = () => {
       <p>Upload File Portofolio dan CV mu disini</p>
 
       <!-- The button to open modal -->
-      <label for="my-modal-4" class="btn btn-info my-2">Add New File</label>
+      <label v-if="status" for="my-modal-4" class="badge badge-primary badge-xl">Tambah File</label>
 
       <div v-if="$page.props.flash.message" class="alert alert-success shadow-lg mt-5">
         <div>
@@ -63,28 +89,29 @@ const submit = () => {
       <label for="my-modal-4" class="modal cursor-pointer">
         <label class="modal-box relative" for="">
           <h3 class="text-lg font-bold">Form Tambah File</h3>
-          <form @submit.prevent="submit">
+
+          <form @submit.prevent="update($page.props.user.id)">
             <div class="mt-4">
               <InputLabel for="file_cv" value="Upload CV (*pdf)" />
-              <input @input="form.file_cv = $event.target.files[0]" id="file_cv" type="file"
+              <input @input="file.file_cv = $event.target.files[0]" id="file_cv" type="file"
                 class="file-input file-input-bordered file-input-primary w-full max-w-xs mt-1" />
-              <InputError class="mt-2" :message="form.errors.file_cv" />
+                <InputError class="mt-2" :message="errors.file_cv" />
             </div>
 
             <div class="mt-4">
               <InputLabel for="file_porto" value="Upload Porto Folio (tidak wajib)" />
-              <input @input="form.file_porto = $event.target.files[0]" id="file_porto" type="file"
+              <input @input="file.file_porto = $event.target.files[0]" id="file_porto" type="file"
                 class="file-input file-input-bordered file-input-primary w-full max-w-xs mt-1" />
-              <InputError class="mt-2" :message="form.errors.file_porto" />
+              <InputError class="mt-2" :message="errors.file_porto" />
             </div>
 
-            <button :class="{ 'opacity-25': form.processing }" :disabled="form.processing"
+            <button :class="{ 'opacity-25': file.processing }" :disabled="file.processing"
               class="mt-3 bg-primary text-white p-2 rounded-md cursor-pointer">Submit</button>
           </form>
         </label>
       </label>
 
-      <div class="flex flex-col items-start gap-5 mt-5">
+      <div v-if=status class="flex flex-col items-start gap-5 mt-5">
         <div>
           <p>File CV</p>
           <TableLayout>
@@ -104,20 +131,22 @@ const submit = () => {
                   </thead>
                   <tbody>
                     <!-- row 1 -->
-                    <tr v-for="(file, key) in files">
+                    <tr v-if="files[0].file_cv" v-for="(file, key) in files">
                       <td>
-                        {{ key + 1 }}
+                        {{ key+1 }}
                       </td>
                       <td>
                         <v-icon name="vi-file-type-pdf2" />
+                        {{ file.file_cv }}
                       </td>
 
                       <td>
                         <a class="text-xs font-semibold inline-block py-1 px-2 rounded text-indigo-600 bg-indigo-200 uppercase last:mr-0 mr-1"
-                          :href="'/' + file.file_cv" download >Download</a>
+                          :href="'/' + file.file_cv" download>Download</a>
                       </td>
-
-
+                    </tr>
+                    <tr v-else>
+                      <p class="text-warning font-bold">Belum ada filenya bro...</p>
                     </tr>
                   </tbody>
                 </table>
@@ -144,18 +173,24 @@ const submit = () => {
                   </thead>
                   <tbody>
                     <!-- row 1 -->
-                    <tr v-for="(file, key) in files">
+                    <tr v-if="files[0].file_porto" v-for="(file, key) in files">
                       <td>
                         {{ key + 1 }}
                       </td>
                       <td>
                         <v-icon name="vi-file-type-pdf2" />
+                        {{ file.file_porto }}
                       </td>
 
                       <td>
                         <a class="text-xs font-semibold inline-block py-1 px-2 rounded text-indigo-600 bg-indigo-200 uppercase last:mr-0 mr-1"
-                          :href="'/' + file.file_porto" download >Download</a>
+                          :href="'/' + file.file_porto" download>Download</a>
                       </td>
+                    </tr>
+                    <tr v-else>
+
+
+                      <p class="text-warning font-bold">Belum ada filenya bro...</p>
                     </tr>
                   </tbody>
                 </table>
@@ -164,6 +199,16 @@ const submit = () => {
           </TableLayout>
         </div>
       </div>
+
+      <div v-else class="flex flex-col items-start ">
+        <form @submit.prevent="submit">
+          <button class="btn btn-primary my-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
+            Activate Your File Repository
+          </button>
+        </form>
+        <v-icon name="md-folderoff-sharp" class="text-center" scale="3.5" animation="wrench" />
+      </div>
     </main>
   </AppLayout>
 </template>
+

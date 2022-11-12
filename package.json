@@ -24,6 +24,7 @@
         "aos": "^2.3.4",
         "daisyui": "^2.31.0",
         "oh-vue-icons": "^1.0.0-rc3",
-        "theme-change": "^2.2.0"
+        "theme-change": "^2.2.0",
+        "vue-sweetalert2": "^5.0.5"
     }
 }

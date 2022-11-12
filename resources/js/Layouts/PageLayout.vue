@@ -134,9 +134,9 @@ const logout = (e) => {
           </div>
 
           <div v-else class="flex items-center gap-3 mr-5">
-            <Link :href="route('login')">
-            <PrimaryButton>Login</PrimaryButton>
-            </Link>
+
+            <label for="my-modal-3" class="btn-primary px-3 py-2 rounded">Login</label>
+
             <Link :href="route('register')" class="text-primary font-bold">Register</Link>
           </div>
         </div>
@@ -163,8 +163,26 @@ const logout = (e) => {
       </div>
     </header>
 
+    <!-- The button to open modal -->
+
+    <!-- Put this part before </body> tag -->
+    <input type="checkbox" id="my-modal-3" class="modal-toggle z-10" />
+    <label for="my-modal-3" class="modal cursor-pointer">
+      <label class="modal-box relative flex flex-col items-center gap-5" for="">
+        <Link :href="route('login')">
+        <PrimaryButton>Login Mahasiswa</PrimaryButton>
+        </Link>
+        <Link :href="route('admin.login')">
+          <PrimaryButton>Login Admin</PrimaryButton>
+        </Link>
+
+      </label>
+    </label>
+
     <!-- Page Content -->
-    <main data-aos="fade-left" data-aos-duration="500" class="min-h-screen pt-32 flex flex-col items-center">
+    <main data-aos="fade-left" data-aos-duration="500"
+      class="max-w-7xl mx-auto min-h-screen pt-32 flex flex-col items-center">
+
       <slot />
     </main>
     <footer class="footer footer-center p-10 bg-base-100 mt-32">

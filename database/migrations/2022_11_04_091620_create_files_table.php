@@ -17,7 +17,9 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->unique();
             $table->string('file_cv')->nullable();
+            $table->string('file_cv_name')->nullable();
             $table->string('file_porto')->nullable();
+            $table->string('file_porto_name')->nullable();
             $table->timestamps();
         });
     }

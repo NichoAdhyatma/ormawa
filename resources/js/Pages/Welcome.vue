@@ -14,7 +14,7 @@ defineProps({
     <Head title="Welcome" />
     <PageLayout>
         <main>
-            <div class="max-w-7xl flex flex-col lg:flex-row items-center px-6 lg:px-8">
+            <div class="flex flex-col lg:flex-row items-center px-6 lg:px-8">
                 <div>
                     <img src="/asset/landing-img.png" alt="img-landing" class="w-75 sm:w-100">
                 </div>

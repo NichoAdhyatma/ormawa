@@ -226,7 +226,7 @@ const logout = () => {
                     </div>
                 </div>
 
-                <main class="mb-10 sm:mb-0 mt-16 sm:mt-5 grid gap-4 p-5 lg:pl-24">
+                <main class="mb-10 sm:mb-0 sm:mt-5 grid gap-4 p-5 lg:pl-24  justify-center">
                     <slot />
                 </main>
             </div>

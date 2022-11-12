@@ -9,8 +9,15 @@ import { ZiggyVue } from "../../vendor/tightenco/ziggy/dist/vue.m";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { OhVueIcon, addIcons } from "oh-vue-icons";
-import { BiPersonFill, IoNotificationsSharp, MdFolder, ViFileTypePdf2 } from "oh-vue-icons/icons";
-import { Inertia } from "@inertiajs/inertia";
+import {
+    BiPersonFill,
+    IoNotificationsSharp,
+    MdFolder,
+    ViFileTypePdf2,
+    MdFolderoffSharp,
+} from "oh-vue-icons/icons";
+import VueSweetalert2 from 'vue-sweetalert2';
+import 'sweetalert2/dist/sweetalert2.min.css';
 
 const appName =
     window.document.getElementsByTagName("title")[0]?.innerText || "Laravel";
@@ -26,13 +33,20 @@ createInertiaApp({
         return createApp({ render: () => h(app, props) })
             .use(plugin)
             .use(ZiggyVue, Ziggy)
+            .use(VueSweetalert2)
             .component("v-icon", OhVueIcon)
             .mount(el);
     },
 });
 
 AOS.init();
-addIcons(BiPersonFill, IoNotificationsSharp, MdFolder, ViFileTypePdf2);
+addIcons(
+    BiPersonFill,
+    IoNotificationsSharp,
+    MdFolder,
+    ViFileTypePdf2,
+    MdFolderoffSharp
+);
 // InertiaProgress.init({ color: "blue" });
 InertiaProgress.init({
     // The delay after which the progress bar will
@@ -48,4 +62,3 @@ InertiaProgress.init({
     // Whether the NProgress spinner will be shown.
     showSpinner: false,
 });
-

@@ -20,8 +20,15 @@ class FileController extends Controller
     {
         $files = File::where('user_id', Auth::user()->id)->get();
 
+        if ($files->count() == 0) {
+            $status = false;
+        } else {
+            $status = true;
+        }
+
         return Inertia::render('Dashboard/Folder', [
-            'files' => $files
+            'files' => $files,
+            'status' => $status
         ]);
     }
 
@@ -41,31 +48,14 @@ class FileController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store()
     {
 
-        $validatedData = $request->validate([
-            'file_cv' => 'mimes:pdf',
-            'file_porto' => 'mimes:pdf'
+        File::create([
+            'user_id' => Auth::user()->id
         ]);
 
-        if(!$validatedData || File::where('user_id', Auth::user()->id)->get()->count() > 0) {
-            return back()->with('fail', 'Gagal menambahkan file!');
-        }
-
-        if (isset($request->file_cv)) {
-            $validatedData['file_cv'] = $request->file('file_cv')->store('cv', 'public');
-        }
-
-        if (isset($request->file_porto)) {
-            $validatedData['file_porto'] = $request->file('file_porto')->store('porto' , 'public');
-        }
-
-        $validatedData['user_id'] = Auth::user()->id;
-
-        File::create($validatedData);
-
-        return back()->with('message', 'Berhasil menambahkan file!');
+        return back()->with('message', 'Berhasil, Repositor aktif !');
     }
 
     /**
@@ -87,7 +77,7 @@ class FileController extends Controller
      */
     public function edit($id)
     {
-        //
+        return "200 OK!";
     }
 
     /**
@@ -99,7 +89,38 @@ class FileController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $file = File::where('user_id', $id)->get();
+
+        $request->validate([
+            'file_cv' => 'nullable|mimes:pdf',
+            'file_porto' => 'nullable|mimes:pdf'
+        ]);
+
+        if(!isset($request->file_cv) && !isset($request->file_porto)) {
+            return back()->with('fail', 'ga ada yang di upload cuy :(');
+        } 
+
+        if ($file[0]->file_cv != null && isset($request->file_cv)) {
+            Storage::delete($file[0]->file_cv);
+        }
+
+        if ($file[0]->file_porto != null && isset($request->file_porto)) {
+            Storage::delete($file[0]->file_porto);
+        }
+
+        if (isset($request->file_cv)) {
+            $validatedData['file_cv_name'] = $request->file('file_cv')->getClientOriginalName();
+            $validatedData['file_cv'] = $request->file('file_cv')->storeAs('cv', Auth::user()->username . "-cv.pdf", 'public');
+        }
+
+        if (isset($request->file_porto)) {
+            $validatedData['file_porto_name'] = $request->file('file_porto')->getClientOriginalName();
+            $validatedData['file_porto'] = $request->file('file_porto')->storeAs('porto', Auth::user()->username . "-portofolio.pdf", 'public');
+        }
+
+        File::where('user_id', $id)->update($validatedData);
+
+        return back()->with('message', 'Berhasil menambahkan file!');
     }
 
     /**
@@ -111,9 +132,5 @@ class FileController extends Controller
     public function destroy($id)
     {
         //
-    }
-
-    public function download() {
-        return Storage::download('2ytvi47W67Rf2yAyykd6oNRnxTk2dkxXhuZPcBvt.pdf');
     }
 }

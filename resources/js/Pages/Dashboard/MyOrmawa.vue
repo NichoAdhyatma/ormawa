@@ -4,7 +4,7 @@ import { Link } from "@inertiajs/inertia-vue3";
 import TableLayout from "../../Components/TableLayout.vue";
 
 defineProps({
-  items: Object
+  items: Object,
 })
 </script>
 
