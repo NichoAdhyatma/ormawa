@@ -33,6 +33,7 @@ Route::middleware([
     'admin'
 ])->group(function() {
     Route::resource('/admin', AdminController::class);
+    Route::post('/logout-admin', [AuthAdmin::class, 'logout'])->name('admin.logout');
 });
 
 Route::middleware([
