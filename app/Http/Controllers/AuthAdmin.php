@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Error;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
@@ -22,7 +23,7 @@ class AuthAdmin extends Controller
             // Authentication passed...
             return redirect('/admin');
         } else {
-            return "WikWok Data Salah";
+            return back()->with('fail', 'Data yang kamu masukan salah');
         }
     }
 

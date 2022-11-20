@@ -28,11 +28,12 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'username',
+        'jurusan_id',
         'email',
         'password',
     ];
 
-    protected $with = ['file'];
+    protected $with = ['file', 'jurusan'];
 
     /**
      * The attributes that should be hidden for serialization.
@@ -66,5 +67,9 @@ class User extends Authenticatable
 
     public function file() {
         return $this->hasMany(File::class);
+    }
+
+    public function jurusan() {
+        return $this->belongsTo(Jurusan::class, 'jurusan_id');
     }
 }

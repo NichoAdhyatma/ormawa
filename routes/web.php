@@ -7,6 +7,7 @@ use App\Http\Controllers\FileController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\OrmawaController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\JoinController;
 use App\Http\Controllers\OrganisasiController;
 
 /*
@@ -26,7 +27,7 @@ Route::get('/', function () {
         'canRegister' => Route::has('register'),
     ]);
 })->name('home');
-Route::resource('/organisasi', OrganisasiController::class);
+
 Route::resource('/category', CategoryController::class)->only(['show']);
 
 Route::middleware([
@@ -34,6 +35,7 @@ Route::middleware([
 ])->group(function() {
     Route::resource('/admin', AdminController::class);
     Route::post('/logout-admin', [AuthAdmin::class, 'logout'])->name('admin.logout');
+    Route::resource('/organisasi', OrganisasiController::class);
 });
 
 Route::middleware([
@@ -58,3 +60,5 @@ Route::middleware('guest:admin')->group(function () {
     Route::get('/admin-login', [AuthAdmin::class, 'index'])->name('admin.login');
     Route::post('/admin-login', [AuthAdmin::class, 'authenticate'])->name('admin.auth');
 });
+
+Route::get('/join/{join}', [JoinController::class, 'getJoin']);

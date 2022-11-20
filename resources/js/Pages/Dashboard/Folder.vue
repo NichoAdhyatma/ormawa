@@ -32,7 +32,7 @@ const submit = (event) => {
     showCancelButton: true,
     confirmButtonColor: '#3085d6',
     cancelButtonColor: '#d33',
-    confirmButtonText: 'Yes, delete it!'
+    confirmButtonText: 'Yes, Activate'
   }).then((result) => {
     if (result.isConfirmed) {
       form.post(route('file.store'))

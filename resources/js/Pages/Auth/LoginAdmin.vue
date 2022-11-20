@@ -42,6 +42,8 @@ const submit = () => {
             {{ status }}
         </div>
 
+        <InputError class="my-2" :message="$page.props.flash.fail" />
+
         <form @submit.prevent="submit">
             <div>
                 <InputLabel for="email" value="Email" />

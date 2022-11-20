@@ -1,6 +1,5 @@
 import "./bootstrap";
 import "../css/app.css";
-
 import { createApp, h } from "vue";
 import { createInertiaApp } from "@inertiajs/inertia-vue3";
 import { InertiaProgress } from "@inertiajs/progress";
@@ -18,6 +17,8 @@ import {
 } from "oh-vue-icons/icons";
 import VueSweetalert2 from 'vue-sweetalert2';
 import 'sweetalert2/dist/sweetalert2.min.css';
+import axios from 'axios'
+import VueAxios from 'vue-axios'
 
 const appName =
     window.document.getElementsByTagName("title")[0]?.innerText || "Laravel";
@@ -34,8 +35,9 @@ createInertiaApp({
             .use(plugin)
             .use(ZiggyVue, Ziggy)
             .use(VueSweetalert2)
+            .use(VueAxios, axios)
             .component("v-icon", OhVueIcon)
-            .mount(el);
+            .mount(el)
     },
 });
 

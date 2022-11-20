@@ -8,9 +8,14 @@ import InputLabel from '@/Components/InputLabel.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import TextInput from '@/Components/TextInput.vue';
 
+defineProps({
+    jurusan: Object
+})
+
 const form = useForm({
     name: '',
     username: '',
+    jurusan_id: '',
     email: '',
     password: '',
     password_confirmation: '',
@@ -43,9 +48,17 @@ const submit = () => {
 
             <div class="mt-4">
                 <InputLabel for="username" value="Username" />
-                <TextInput id="username" v-model="form.username" type="text" class="mt-1 block w-full" required
-                    />
+                <TextInput id="username" v-model="form.username" type="text" class="mt-1 block w-full" required />
                 <InputError class="mt-2" :message="form.errors.username" />
+            </div>
+
+            <div class="mt-4">
+                <InputLabel for="jurusan" value="Jurusan" />
+                <select id="jurusan" v-model="form.jurusan_id" class="select w-full max-w-xs">
+                    <option disabled selected>Pilih Jurusan</option>
+                    <option v-for="item in jurusan" :value=item.id>{{ item.name }}</option>
+                </select>
+                <InputError class="mt-2" :message="form.errors.jurusan_id" />
             </div>
 
             <div class="mt-4">

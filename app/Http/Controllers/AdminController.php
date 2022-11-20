@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Organisasi;
+use App\Models\Join;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -14,7 +16,11 @@ class AdminController extends Controller
      */
     public function index()
     {
-        return Inertia::render('Admin/IndexAdmin');
+        return Inertia::render('Admin/IndexAdmin', [
+            'joinAcc' => Join::where('status', 1)->get(),
+            'joinReject' => Join::where('status', 0)->get(),
+            'joinPending' => Join::where('status', null)->get(),
+        ]);
     }
 
     /**
@@ -57,7 +63,10 @@ class AdminController extends Controller
      */
     public function edit($id)
     {
-        //
+        $join = Join::where('id', $id)->get();
+        return Inertia::render('Admin/DetailJoin', [
+            'join' => $join
+        ]);
     }
 
     /**
@@ -69,7 +78,11 @@ class AdminController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        Join::where('id', $id)->update([
+            'status' => $request->status
+        ]);
+
+        return redirect(route('admin.index'));
     }
 
     /**

@@ -17,8 +17,6 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->index();
             $table->foreignId('organisasi_id')->index();
-            $table->string('file_cv')->nullable();
-            $table->string('file_porto')->nullable();
             $table->boolean('status')->default(false);
             $table->timestamps();
         });

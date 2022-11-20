@@ -7,6 +7,7 @@ use Illuminate\Database\Seeder;
 use App\Models\Organisasi;
 use App\Models\Category;
 use App\Models\Join;
+use App\Models\Jurusan;
 use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
@@ -138,6 +139,13 @@ class DatabaseSeeder extends Seeder
             'user_id' => 1,
             'organisasi_id' => 1,
             'status' => true
+        ]);
+
+        Jurusan::create([
+            'name' => 'Teknik Informatika'
+        ]);
+        Jurusan::create([
+            'name' => 'Teknik Elektronika'
         ]);
     }
 }

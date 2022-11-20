@@ -11,7 +11,7 @@ defineProps({
 <template>
   <AppLayout title="My-Ormawa">
     <template #title>
-        Ormawa Management
+      Ormawa Management
     </template>
 
     <main>
@@ -80,7 +80,8 @@ defineProps({
                     <div class="flex items-center space-x-3">
                       <div class="flex items-center gap-3">
                         <div class="mask mask-squircle w-12 h-12">
-                          <img v-if="item.organisasi.photo_url" :src="item.organisasi.photo_url" alt="Avatar Tailwind CSS Component" />
+                          <img v-if="item.organisasi.photo_url" :src="item.organisasi.photo_url"
+                            alt="Avatar Tailwind CSS Component" />
                         </div>
                         {{ item.organisasi.slug }}
                       </div>
@@ -89,18 +90,24 @@ defineProps({
                     </div>
                   </td>
                   <td>
-                    <div v-if="item.status">
+                    <span v-if="item.status">
                       <span
                         class="text-xs font-semibold inline-block py-1 px-2 rounded text-emerald-600 bg-emerald-200 uppercase last:mr-0 mr-1">
                         Accepted
                       </span>
-                    </div>
-                    <div v-else>
+                    </span>
+
+                    <span v-else-if="item.status == 0"
+                      class="text-xs font-semibold inline-block py-1 px-2 rounded text-red-600 bg-red-200 uppercase last:mr-0 mr-1">
+                      Ditolak
+                    </span>
+
+                    <span v-else>
                       <span
                         class="text-xs font-semibold inline-block py-1 px-2 rounded text-amber-600 bg-amber-200 uppercase last:mr-0 mr-1">
                         Pending
                       </span>
-                    </div>
+                    </span>
                   </td>
                   <th>
                     <button class="btn btn-info btn-xs">details</button>

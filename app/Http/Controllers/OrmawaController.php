@@ -72,7 +72,7 @@ class OrmawaController extends Controller
      */
     public function show(Join $join)
     {
-        //
+        return 'Ok!';
     }
 
     /**

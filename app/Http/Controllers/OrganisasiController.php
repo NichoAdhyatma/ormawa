@@ -11,14 +11,6 @@ use App\Http\Requests\UpdateOrganisasiRequest;
 
 class OrganisasiController extends Controller
 {
-    public function __construct()
-    {
-        Route::middleware(
-            'auth:sanctum',
-            config('jetstream.auth_session'),
-            'verified'
-        );
-    }
     /**
      * Display a listing of the resource.
      *

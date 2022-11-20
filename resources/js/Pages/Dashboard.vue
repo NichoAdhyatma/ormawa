@@ -6,7 +6,7 @@ import Welcome from '@/Components/Welcome.vue';
 <template>
     <AppLayout title="Dashboard">
         <template #title>
-            Dashboard OrmawaPENS
+            Dashboard Mahasiswa OrmawaPENS
         </template>
 
         <main>
