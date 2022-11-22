@@ -110,12 +110,12 @@ class FileController extends Controller
 
         if (isset($request->file_cv)) {
             $validatedData['file_cv_name'] = $request->file('file_cv')->getClientOriginalName();
-            $validatedData['file_cv'] = $request->file('file_cv')->storeAs('cv', Auth::user()->username . "-cv.pdf", 'public');
+            $validatedData['file_cv'] = $request->file('file_cv')->storeAs('cv', $request->file('file_cv')->getClientOriginalName(), 'public');
         }
 
         if (isset($request->file_porto)) {
             $validatedData['file_porto_name'] = $request->file('file_porto')->getClientOriginalName();
-            $validatedData['file_porto'] = $request->file('file_porto')->storeAs('porto', Auth::user()->username . "-portofolio.pdf", 'public');
+            $validatedData['file_porto'] = $request->file('file_porto')->storeAs('porto', $request->file('file_porto')->getClientOriginalName(), 'public');
         }
 
         File::where('user_id', $id)->update($validatedData);
@@ -128,9 +128,33 @@ class FileController extends Controller
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
+     * @param  \Illuminate\Http\Request  $request
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
-        //
+        
+
+        return $request;
+    }
+
+    public function deleteFile(Request $request) {
+        $file = File::where('user_id', Auth::user()->id)->get();
+
+        if($request->header == 'porto') {
+            Storage::disk('public')->delete($file[0]->file_porto);
+            File::where('user_id', Auth::user()->id)->update([
+                'file_porto' => null,
+                'file_porto_name' => null
+            ]);
+        }
+        else {
+            Storage::disk('public')->delete($file[0]->file_cv);
+            File::where('user_id', Auth::user()->id)->update([
+                'file_cv' => null,
+                'file_cv_name' => null
+            ]);
+        }
+
+        return back()->with('message', 'Berhasil menghapus file!');
     }
 }

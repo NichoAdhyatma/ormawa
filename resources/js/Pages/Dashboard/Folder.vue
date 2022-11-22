@@ -17,9 +17,9 @@ const swal = inject('$swal')
 
 const file = useForm({
   file_cv: null,
-  file_cv_name:null,
+  file_cv_name: null,
   file_porto: null,
-  file_porto_name:null
+  file_porto_name: null
 })
 
 const form = useForm()
@@ -48,10 +48,17 @@ const update = (id) => {
   })
 }
 
+const destroy = (hparam) => {
+  Inertia.post('/file/delete', {
+    header: hparam,
+  });
+}
+
+
 </script>
 
 <template>
-  <AppLayout>
+  <AppLayout title="File">
     <template #title>
       File Management
     </template>
@@ -95,7 +102,7 @@ const update = (id) => {
               <InputLabel for="file_cv" value="Upload CV (*pdf)" />
               <input @input="file.file_cv = $event.target.files[0]" id="file_cv" type="file"
                 class="file-input file-input-bordered file-input-primary w-full max-w-xs mt-1" />
-                <InputError class="mt-2" :message="errors.file_cv" />
+              <InputError class="mt-2" :message="errors.file_cv" />
             </div>
 
             <div class="mt-4">
@@ -133,16 +140,20 @@ const update = (id) => {
                     <!-- row 1 -->
                     <tr v-if="files[0].file_cv" v-for="(file, key) in files">
                       <td>
-                        {{ key+1 }}
+                        {{ key + 1 }}
                       </td>
                       <td>
                         <v-icon name="vi-file-type-pdf2" />
-                        {{ file.file_cv }}
+                        {{ file.file_cv_name }}
                       </td>
 
                       <td>
                         <a class="text-xs font-semibold inline-block py-1 px-2 rounded text-indigo-600 bg-indigo-200 uppercase last:mr-0 mr-1"
                           :href="'/' + file.file_cv" download>Download</a>
+                          <form @submit.prevent="destroy('cv')">
+                          <input type="hidden" value="">
+                          <button class="badge bg-danger">Delete</button>
+                        </form>
                       </td>
                     </tr>
                     <tr v-else>
@@ -179,12 +190,16 @@ const update = (id) => {
                       </td>
                       <td>
                         <v-icon name="vi-file-type-pdf2" />
-                        {{ file.file_porto }}
+                        {{ file.file_porto_name }}
                       </td>
 
                       <td>
                         <a class="text-xs font-semibold inline-block py-1 px-2 rounded text-indigo-600 bg-indigo-200 uppercase last:mr-0 mr-1"
                           :href="'/' + file.file_porto" download>Download</a>
+                        <form @submit.prevent="destroy('porto')">
+                          <input type="hidden" value="">
+                          <button class="badge bg-danger">Delete</button>
+                        </form>
                       </td>
                     </tr>
                     <tr v-else>
@@ -200,7 +215,7 @@ const update = (id) => {
         </div>
       </div>
 
-      <div v-else class="flex flex-col items-start ">
+      <div v-else class="flex flex-col items-center">
         <form @submit.prevent="submit">
           <button class="btn btn-primary my-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
             Activate Your File Repository

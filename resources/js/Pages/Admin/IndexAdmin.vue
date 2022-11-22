@@ -7,7 +7,7 @@ import { Link } from "@inertiajs/inertia-vue3";
 defineProps({
   joinAcc: Object,
   joinReject: Object,
-  JoinPending: Object,
+  joinPending: Object,
 })
 
 </script>
@@ -90,7 +90,7 @@ defineProps({
           </template>
         </TableLayouts>
         
-        <TableLayouts class="mt-5">
+        <TableLayouts>
           <template #judul>
             Reject
           </template>
@@ -162,7 +162,7 @@ defineProps({
             </div>
           </template>
         </TableLayouts>
-        <TableLayouts class="mt-5">
+        <TableLayouts>
           <template #judul>
             Pending
           </template>
@@ -183,7 +183,7 @@ defineProps({
                 </thead>
                 <tbody>
                   <!-- row 1 -->
-                  <tr v-if="JoinPending" v-for="(item, key) in JoinPending">
+                  <tr v-for="(item, key) in joinPending">
                     <th>
                       {{ key + 1 }}
                     </th>
@@ -229,9 +229,7 @@ defineProps({
                       <Link :href="'/admin/' + item.id + '/edit'"  class="btn btn-primary">Details</Link>
                     </th>
                   </tr>
-                  <tr v-else>
-                    <p class="text-red-500 font-semibold my-5">Data tidak ditemukan...</p>
-                  </tr>
+                  
                 </tbody>
               </table>
             </div>

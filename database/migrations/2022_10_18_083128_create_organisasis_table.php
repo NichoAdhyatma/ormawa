@@ -21,7 +21,7 @@ return new class extends Migration
             $table->foreignId('jurusan_id')->nullable();
             $table->string('visi');
             $table->string('misi');
-            $table->string('desc');
+            $table->text('desc');
             $table->string('url')->nullable();
             $table->string('photo_url', 2048)->nullable();
             $table->timestamps();

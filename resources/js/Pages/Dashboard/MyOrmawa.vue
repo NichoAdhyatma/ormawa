@@ -9,7 +9,7 @@ defineProps({
 </script>
 
 <template>
-  <AppLayout title="My-Ormawa">
+  <AppLayout title="MyOrmawa">
     <template #title>
       Ormawa Management
     </template>
@@ -57,7 +57,7 @@ defineProps({
         </p>
       </div>
 
-      <TableLayout>
+      <TableLayout class="p-3">
         <template #table>
           <div class="overflow-x-auto w-full mt-3">
             <table class="table mx-auto">
@@ -83,7 +83,7 @@ defineProps({
                           <img v-if="item.organisasi.photo_url" :src="item.organisasi.photo_url"
                             alt="Avatar Tailwind CSS Component" />
                         </div>
-                        {{ item.organisasi.slug }}
+                        {{ item.organisasi.name }}
                       </div>
                       <div>
                       </div>

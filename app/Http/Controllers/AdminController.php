@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Organisasi;
 use App\Models\Join;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -23,6 +24,8 @@ class AdminController extends Controller
         ]);
     }
 
+  
+
     /**
      * Show the form for creating a new resource.
      *
@@ -30,7 +33,7 @@ class AdminController extends Controller
      */
     public function create()
     {
-        //
+        return 'ok';
     }
 
     /**

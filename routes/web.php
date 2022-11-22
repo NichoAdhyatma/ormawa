@@ -34,6 +34,7 @@ Route::middleware([
     'admin'
 ])->group(function() {
     Route::resource('/admin', AdminController::class);
+    Route::get('/mahasiswa', [JoinController::class, 'getuser'])->name('admin.getuser');
     Route::post('/logout-admin', [AuthAdmin::class, 'logout'])->name('admin.logout');
     Route::resource('/organisasi', OrganisasiController::class);
 });
@@ -46,10 +47,9 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return Inertia::render('Dashboard');
     })->name('dashboard');
-
     Route::resource('/dashboard/ormawa', OrmawaController::class);
-
     Route::resource('/dashboard/file', FileController::class);
+    Route::post('/file/delete', [FileController::class, 'deleteFile']);
 });
 
 // Route::get('/template', function () {

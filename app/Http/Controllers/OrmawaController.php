@@ -31,7 +31,7 @@ class OrmawaController extends Controller
      */
     public function create()
     {
-        $organisasi = Organisasi::all();
+        $organisasi = Organisasi::where('jurusan_id', Auth::user()->jurusan_id)->orWhere('category_id', 2)->get();
         return Inertia::render('Dashboard/FormDaftar', [
             'organisasi' => $organisasi
         ]);
@@ -49,10 +49,15 @@ class OrmawaController extends Controller
             'organisasi_id' => 'required',
         ]);
 
-        if (Join::where('organisasi_id', $request->organisasi_id)
+        if (
+            Join::where('organisasi_id', $request->organisasi_id)
             ->where('user_id', Auth::user()->id)->count() > 0
         ) {
             return back()->with('fail', 'maaf anda sudah mendaftar di organiasi ini!');
+        }
+
+        if (!Organisasi::where('jurusan_id', Auth::user()->jurusan_id)->orWhere('category_id', 2)->get()) {
+            return back()->with('fail', 'maaf anda tidak bisa mendaftar di organiasi ini!');
         }
 
         $validatedData['user_id'] = Auth::user()->id;

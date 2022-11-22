@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->index();
             $table->foreignId('organisasi_id')->index();
-            $table->boolean('status')->default(false);
+            $table->boolean('status')->nullable();
             $table->timestamps();
         });
     }

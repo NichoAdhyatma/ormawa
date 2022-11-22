@@ -21,10 +21,9 @@ const submit = () => {
 };
 </script>
 <template>
-  <AppLayout title="Form Pendaftaran - Ormawa">
+  <AppLayout title="Form Pendaftaran">
     <template #header>
       <h1>Form Pendaftaran Organisasi</h1>
-
     </template>
 
     <main>
@@ -52,7 +51,11 @@ const submit = () => {
         </div>
       </div>
 
-      <form v-if="$page.props.user.file[0].file_cv && $page.props.user.file[0].file_porto" @submit.prevent="submit"
+      <div v-if="!$page.props.user.file[0]">
+          <span class="text-blue-600 font-semibold">Aktifin dulu folder file mu..</span>
+      </div>
+
+      <form v-else-if="$page.props.user.file[0].file_cv && $page.props.user.file[0].file_porto" @submit.prevent="submit"
         class="mt-5 bg-base-200 p-4 rounded-md">
         <div class="mt-3">
           <InputLabel for="organisasi_id" value="Pilih Organisasi" />

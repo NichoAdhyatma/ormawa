@@ -131,6 +131,83 @@ class DatabaseSeeder extends Seeder
             'slug' => 'BEM'
         ]);
 
+        Organisasi::factory()->create([
+            'name' => 'UKM Robotika',
+            'category_id' => '2',
+            'desc' => 'ini deskripsi himpunan',
+            'visi' => 'ini visi himpunan',
+            'misi' => 'ini misi himpunan',
+            'photo_url' => ''
+        ]);
+        
+        Organisasi::factory()->create([
+            'name' => 'UKM Basket',
+            'category_id' => '2',
+            'desc' => 'UKM yang dibentuk sebagai wadah untuk menampung minat dan bakat mahasiswa Politeknik Elektronika Negeri Surabaya khususnya 
+                        di bidang olahraga basket UKM ini bukan hanya sebagai sarana penyalur hobi basket, namun mendorong mahasiswa untuk berprestasi 
+                        di bidang olahraga basket baik di tingkat regional maupun nasional.',
+            'visi' => 'Menyalurkan minat dan bakat mahasiswa Politeknik Elektronika Negeri Surabaya dalam bidang olahraga bola basket dan 
+                        menjadi sarana untuk pengembangan diri menuju pribadi yang lebih baik.',
+            'misi' => '1. Mengembangkan bakat dalam permainan bola basket melalui latihan dan kompetisi
+                        2. Membangun unit kegiatan mahasiswa yang aktif dan berguna bagi Politeknik Elektronika Negeri Surabaya',
+            'photo_url' => ''
+        ]);
+        
+        Organisasi::factory()->create([
+            'name' => 'UKM Futsal',
+            'category_id' => '2',
+            'desc' => 'UKM Futsal adalah jenis UKM yang bergerak di bidang olahraga terutama bola (futsal). 
+                        UKM ini hanya mengikuti kegiatan-kegiatan yang ada guna menyalurkan minat dan bakat mahasiswa. 
+                        UKM futsal dapat mengembangkan bakat dan minat olahraga futsal di lingkungan Politeknik Elektronika Negeri Surabaya. 
+                        Kegiatan dari UKM Futsal antara lain melaksanakan latihan futsal secara rutin serta mengikuti kompetisi-kompetisi futsal dalam skala regional dan nasional.',
+            'visi' => 'ini visi himpunan',
+            'misi' => 'ini misi himpunan',
+            'photo_url' => ''
+        ]);
+        
+        Organisasi::factory()->create([
+            'name' => 'UKM Badminton',
+            'category_id' => '2',
+            'desc' => 'UKM Badminton adalah salah satu Unit Kegiatan Mahasiswa yang ada di Politeknik Elektronika Negeri Surabaya. 
+                        UKM Badminton itu sendiri dibuat untuk menyalurkan bakat-bakat mahasiswa. Tidak hanya itu, di UKM tersebut 
+                        juga menerima mahasiswa yang ingin bergabung untuk belajar dan berolahraga agar bakat dan hobby nya dapat 
+                        tersalurkan dari UKM ini serta terciptanya mahasiswa PENS yang berkarakter dan unggul dalam Prestasi di bidang olahraga bulutangkis.',
+            'visi' => 'ini visi himpunan',
+            'misi' => 'ini misi himpunan',
+            'photo_url' => ''
+        ]);
+
+        Organisasi::factory()->create([
+            'name' => 'UKM Fotografi',
+            'category_id' => '2',
+            'desc' => 'ini deskripsi himpunan',
+            'visi' => 'ini visi himpunan',
+            'misi' => 'ini misi himpunan',
+            'photo_url' => ''
+        ]);
+        Organisasi::factory()->create([
+            'name' => 'UKM Tari',
+            'category_id' => '2',
+            'desc' => 'UKM Tari merupakan suatu wadah seni yang bertujuan untuk melestarikan seni budaya serta menghimpun dan menyalurkan minat dan bakat 
+                        dari mahasiswa dalam bidang seni sehingga nantinya dapat bermanfaat. Melalui visinya “mewujudkan dan melestarikan seni dan budaya” 
+                        UKM Kesenian Daerah menjadi satu-satunya UKM yang bergerak dalam pelestarian seni khususnya seni tari 
+                        yang ada di Politeknik Elektronika Negeri Surabaya. UKM tari berada di bawah naungan BEM PENS. ',
+            'visi' => 'ini visi himpunan',
+            'misi' => 'ini misi himpunan',
+            'photo_url' => ''
+        ]);
+
+        Organisasi::factory()->create([
+            'name' => 'UKM Music',
+            'category_id' => '2',
+            'desc' => 'UKM Musik adalah jenis UKM yang bergerak di bidang seni musik terutama. UKM ini hanya mengikuti kegiatan-kegiatan yang 
+                        ada guna menyalurkan minat dan bakat mahasiswa. UKM musik dapat mengembangkan bakat dan minat di lingkungan Politeknik Elektronika Negeri Surabaya.
+                        Kegiatan dari UKM musik antara lain melaksanakan latihan secara rutin serta mengikuti kompetisi-kompetisi musik dalam skala regional dan nasional.',
+            'visi' => 'ini visi himpunan',
+            'misi' => 'ini misi himpunan',
+            'photo_url' => ''
+        ]);
+
         Category::create([
             'name' => 'Komunitas',
         ]);
