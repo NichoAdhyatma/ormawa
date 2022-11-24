@@ -1,6 +1,6 @@
 <script setup>
 import AdminLayout from "@/Layouts/AdminLayouts.vue"
-import { useForm } from '@inertiajs/inertia-vue3';
+import { Link, useForm } from '@inertiajs/inertia-vue3';
 
 defineProps({
   join: Array
@@ -22,59 +22,58 @@ const submit = (id) => {
 
 <template>
   <AdminLayout>
-    <main>
-      <div class="flex flex-col items-center gap-4">
-        <h1>Detail Pendaftar Mahasiswa</h1>
-
-        <div
-          class="bg-white w-1/2 mx-auto p-2 sm:p-4 rounded-2xl shadow-lg flex flex-col sm:flex-row gap-5 select-none ">
-          <div class="flex flex-col flex-1 gap-5 sm:p-2">
-            <div class="flex flex-1 flex-col gap-3">
-              <div class=" rounded-2xl flex flex-col gap-3 mb-3">
-                <p>Nama : {{ join[0].user.name }} </p>
-                <p>Organisasi : {{ join[0].organisasi.name }}</p>
-                <p>File CV : {{ join[0].user.file[0].file_cv_name }} <a class="text-primary font-bold"
-                    :href="'/' + join[0].user.file[0].file_cv" download>Download</a></p>
-                <p>File Porto : {{ join[0].user.file[0].file_porto_name }} <a class="text-primary font-bold"
-                    :href="'/' + join[0].user.file[0].file_porto" download>Download</a></p>
-                <p>Status <span v-if="join[0].status">
-                    <span
-                      class="text-xs font-semibold inline-block py-1 px-2 rounded text-emerald-600 bg-emerald-200 uppercase last:mr-0 mr-1">
-                      Accepted
-                    </span>
+    <template #content>
+      <Link :href="route('admin.index')">
+      <v-icon name="io-arrow-back" scale="2"></v-icon>
+      </Link>
+      <h1 class="text-2xl">Detail Pendaftar Mahasiswa</h1>
+      <div
+        class="bg-base-300 w-full mx-auto p-2 sm:p-4 rounded-2xl shadow-lg flex flex-col sm:flex-row gap-5 select-none ">
+        <div class="flex flex-col flex-1 gap-5 sm:p-2">
+          <div class="flex flex-1 flex-col gap-3">
+            <div class=" rounded-2xl flex flex-col gap-3 mb-3 text-xl">
+              <p>Nama : {{ join[0].user.name }} </p>
+              <p>Organisasi : {{ join[0].organisasi.name }}</p>
+              <p>File CV : {{ join[0].user.file[0].file_cv_name }} <a class="text-primary font-bold"
+                  :href="'/' + join[0].user.file[0].file_cv" download>Download</a></p>
+              <p>File Porto : {{ join[0].user.file[0].file_porto_name }} <a class="text-primary font-bold"
+                  :href="'/' + join[0].user.file[0].file_porto" download>Download</a></p>
+              <p>Status <span v-if="join[0].status">
+                  <span
+                    class="text-xs font-semibold inline-block py-1 px-2 rounded text-emerald-600 bg-emerald-200 uppercase last:mr-0 mr-1">
+                    Accepted
                   </span>
+                </span>
 
-                  <span v-else-if="join[0].status == 0"
-                    class="text-xs font-semibold inline-block py-1 px-2 rounded text-red-600 bg-red-200 uppercase last:mr-0 mr-1">
-                    Ditolak
+                <span v-else-if="join[0].status == 0"
+                  class="text-xs font-semibold inline-block py-1 px-2 rounded text-red-600 bg-red-200 uppercase last:mr-0 mr-1">
+                  Ditolak
+                </span>
+
+                <span v-else>
+                  <span
+                    class="text-xs font-semibold inline-block py-1 px-2 rounded text-amber-600 bg-amber-200 uppercase last:mr-0 mr-1">
+                    Pending
                   </span>
-
-                  <span v-else>
-                    <span
-                      class="text-xs font-semibold inline-block py-1 px-2 rounded text-amber-600 bg-amber-200 uppercase last:mr-0 mr-1">
-                      Pending
-                    </span>
-                  </span>
-                </p>
-              </div>
-            </div>
-            <div class="mt-auto flex gap-3">
-              <form @submit.prevent="submit(join[0].id)" class="flex gap-2 mt-3">
-                <button for="my-modal-3" v-on:click="setStatus(true)" type="submit"
-                  class="py-2 px-4  bg-indigo-600 hover:bg-indigo-700 focus:ring-indigo-500 focus:ring-offset-indigo-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg ">
-                  Terima
-                </button>
-
-                <button type="submit" v-on:click="setStatus(false)"
-                  class="py-2 px-4 flex justify-center items-center  bg-red-600 hover:bg-red-700 focus:ring-red-500 focus:ring-offset-red-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg">
-                  Tolak
-                </button>
-              </form>
+                </span>
+              </p>
             </div>
           </div>
-        </div>
+          <div class="mt-auto flex gap-3">
+            <form @submit.prevent="submit(join[0].id)" class="flex gap-2 mt-3">
+              <button for="my-modal-3" v-on:click="setStatus(true)" type="submit"
+                class="py-2 px-4  bg-indigo-600 hover:bg-indigo-700 focus:ring-indigo-500 focus:ring-offset-indigo-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg ">
+                Terima
+              </button>
 
+              <button type="submit" v-on:click="setStatus(false)"
+                class="py-2 px-4 flex justify-center items-center  bg-red-600 hover:bg-red-700 focus:ring-red-500 focus:ring-offset-red-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg">
+                Tolak
+              </button>
+            </form>
+          </div>
+        </div>
       </div>
-    </main>
+    </template>
   </AdminLayout>
 </template>

@@ -44,8 +44,8 @@ const logout = () => {
           </ul>
         </div>
         <div class="ml-5 hidden md:flex gap-5 align-items-center font-semibold">
-          <Link href="/mahasiswa">Mahasiswa</Link>
-          <a>Organisasi</a>
+          <Link :href="route('admin.mahasiswa')">Mahasiswa</Link>
+          <Link :href="'/admin'">Organisasi</Link>
         </div>
       </div>
 
@@ -63,7 +63,9 @@ const logout = () => {
 
     </div>
     <main class="max-w-7xl min-h-screen mx-auto pb-5">
-      <slot />
+      <div class="flex flex-col items-center gap-5 p-4">
+        <slot name="content" />
+      </div>
     </main>
   </div>
 </template>

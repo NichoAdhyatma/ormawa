@@ -34,9 +34,9 @@ Route::middleware([
     'admin'
 ])->group(function() {
     Route::resource('/admin', AdminController::class);
-    Route::get('/mahasiswa', [JoinController::class, 'getuser'])->name('admin.getuser');
     Route::post('/logout-admin', [AuthAdmin::class, 'logout'])->name('admin.logout');
     Route::resource('/organisasi', OrganisasiController::class);
+    Route::get('/admin-mahasiswa', [AdminController::class, 'mahasiswa'])->name('admin.mahasiswa');
 });
 
 Route::middleware([

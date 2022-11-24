@@ -14,6 +14,8 @@ import {
     MdFolder,
     ViFileTypePdf2,
     MdFolderoffSharp,
+    IoNotifications,
+    IoArrowBack,
 } from "oh-vue-icons/icons";
 import VueSweetalert2 from 'vue-sweetalert2';
 import 'sweetalert2/dist/sweetalert2.min.css';
@@ -47,7 +49,9 @@ addIcons(
     IoNotificationsSharp,
     MdFolder,
     ViFileTypePdf2,
-    MdFolderoffSharp
+    MdFolderoffSharp,
+    IoNotifications,
+    IoArrowBack,
 );
 // InertiaProgress.init({ color: "blue" });
 InertiaProgress.init({

@@ -24,7 +24,12 @@ class AdminController extends Controller
         ]);
     }
 
-  
+    public function mahasiswa() {
+        return Inertia::render('Admin/MahasiswaAdmin', [
+            'users' => User::all()
+        ]);
+    }
+
 
     /**
      * Show the form for creating a new resource.

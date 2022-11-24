@@ -22,7 +22,7 @@
     },
     "dependencies": {
         "aos": "^2.3.4",
-        "daisyui": "^2.31.0",
+        "daisyui": "^2.41.0",
         "oh-vue-icons": "^1.0.0-rc3",
         "theme-change": "^2.2.0",
         "vue-axios": "^3.5.2",

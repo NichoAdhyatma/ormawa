@@ -29,6 +29,10 @@ class RedirectIfAuthenticated
             if(Auth::guard('admin')->check()) {
                 return redirect('/admin');
             }
+
+            if(Auth::guard('web')->check()) {
+                return redirect('/dashboard');
+            }
         }
 
         return $next($request);
