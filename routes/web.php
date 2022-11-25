@@ -1,13 +1,16 @@
 <?php
 
+use App\Models\User;
 use Inertia\Inertia;
 use App\Http\Controllers\AuthAdmin;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FileController;
+use App\Http\Controllers\JoinController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\NotifController;
 use App\Http\Controllers\OrmawaController;
 use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\JoinController;
 use App\Http\Controllers\OrganisasiController;
 
 /*
@@ -32,7 +35,7 @@ Route::resource('/category', CategoryController::class)->only(['show']);
 
 Route::middleware([
     'admin'
-])->group(function() {
+])->group(function () {
     Route::resource('/admin', AdminController::class);
     Route::post('/logout-admin', [AuthAdmin::class, 'logout'])->name('admin.logout');
     Route::resource('/organisasi', OrganisasiController::class);
@@ -44,12 +47,14 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified',
 ])->group(function () {
+
     Route::get('/dashboard', function () {
         return Inertia::render('Dashboard');
     })->name('dashboard');
     Route::resource('/dashboard/ormawa', OrmawaController::class);
     Route::resource('/dashboard/file', FileController::class);
     Route::post('/file/delete', [FileController::class, 'deleteFile']);
+    Route::get('/dashboard/notif', [NotifController::class, 'index'])->name('notif');
 });
 
 // Route::get('/template', function () {
@@ -62,3 +67,4 @@ Route::middleware('guest:admin')->group(function () {
 });
 
 Route::get('/join/{join}', [JoinController::class, 'getJoin']);
+Route::get('/notify', [NotifController::class, 'notify']);

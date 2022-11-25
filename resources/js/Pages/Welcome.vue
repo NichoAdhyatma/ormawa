@@ -25,7 +25,7 @@ defineProps({
                     <p class="opacity-75">Website Resmi Organisasi Mahasiwa</p>
                     <p class="class pt-12 pb-5 text-bold text-2xl">Politeknik Elektronika Negeri Surabaya</p>
 
-                    <p class="pb-3 text-blue-600 text-bold">Jika belum memiliki akun <Strong>Daftar</Strong> terlebih
+                    <p class="pb-3 text-blue-600 text-bold">Jika belum memiliki akun <strong>Daftar</strong> terlebih
                         dahulu</p>
                     <div class="flex gap-4 items-center">
                         <div class="btn-primary rounded px-4 py-1 text-xl cursor-pointer">Login</div>

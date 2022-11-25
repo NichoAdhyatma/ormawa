@@ -50,7 +50,7 @@ defineProps({
                             alt="Avatar Tailwind CSS Component" />
                         </div>
                       </div>
-                      <div>
+                      <div> 
                         <div class="font-bold">{{ item.name }}</div>
                         <div class="text-sm">{{ item.username }}</div>
                       </div>

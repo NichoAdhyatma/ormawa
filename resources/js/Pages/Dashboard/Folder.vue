@@ -4,8 +4,17 @@ import { Link, useForm } from '@inertiajs/inertia-vue3';
 import InputError from '@/Components/InputError.vue';
 import InputLabel from '@/Components/InputLabel.vue';
 import TableLayout from "@/Components/TableLayout.vue";
-import { inject } from 'vue'
+import { inject, ref } from 'vue'
 import { Inertia } from '@inertiajs/inertia'
+
+const theme = ref('light')
+const show = ref('modal cursor-pointer')
+
+const themeHandler = () => {
+  if (localStorage.getItem("theme")) {
+    theme.value = localStorage.getItem('theme')
+  }
+}
 
 defineProps({
   files: Object,
@@ -44,20 +53,57 @@ const update = (id) => {
   Inertia.post('/dashboard/file/' + `${id}`, {
     _method: 'put',
     file_cv: file.file_cv,
-    file_porto: file.file_porto
+    file_porto: file.file_porto,
   })
+  show.value = 'modal cursor-pointer hidden'
+
 }
 
 const destroy = (hparam) => {
-  Inertia.post('/file/delete', {
-    header: hparam,
+  swal.fire({
+    title: 'Are you sure?',
+    text: "You won't be able to revert this!",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Yes, Activate'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      Inertia.post('/file/delete', {
+        header: hparam,
+      });
+    }
   });
 }
-
-
 </script>
 
 <template>
+  <input type="checkbox" id="my-modal-4" class="modal-toggle" />
+  <label for="my-modal-4" :class="show">
+    <label :data-theme="theme" class="modal-box relative" for="">
+      <h3 class="text-lg font-bold">Form Tambah File</h3>
+
+      <form @submit.prevent="update($page.props.user.id)">
+        <div class="mt-4">
+          <InputLabel for="file_cv" value="Upload CV (*pdf)" />
+          <input @input="file.file_cv = $event.target.files[0]" id="file_cv" type="file"
+            class="file-input file-input-bordered file-input-primary w-full max-w-xs mt-1" />
+          <InputError class="mt-2" :message="errors.file_cv" />
+        </div>
+
+        <div class="mt-4">
+          <InputLabel for="file_porto" value="Upload Porto Folio (tidak wajib)" />
+          <input @input="file.file_porto = $event.target.files[0]" id="file_porto" type="file"
+            class="file-input file-input-bordered file-input-primary w-full max-w-xs mt-1" />
+          <InputError class="mt-2" :message="errors.file_porto" />
+        </div>
+
+        <button :class="{ 'opacity-25': file.processing }" :disabled="file.processing"
+          class="mt-3 bg-primary text-white p-2 rounded-md cursor-pointer">Submit</button>
+      </form>
+    </label>
+  </label>
   <AppLayout title="File">
     <template #title>
       File Management
@@ -67,7 +113,8 @@ const destroy = (hparam) => {
       <p>Upload File Portofolio dan CV mu disini</p>
 
       <!-- The button to open modal -->
-      <label v-if="status" for="my-modal-4" class="badge badge-primary badge-xl">Tambah File</label>
+      <label v-if="status" for="my-modal-4" class="badge badge-primary badge-xl" v-on:click="themeHandler">Tambah
+        File</label>
 
       <div v-if="$page.props.flash.message" class="alert alert-success shadow-lg mt-5">
         <div>
@@ -92,31 +139,7 @@ const destroy = (hparam) => {
       </div>
 
       <!-- Put this part before </body> tag -->
-      <input type="checkbox" id="my-modal-4" class="modal-toggle" />
-      <label for="my-modal-4" class="modal cursor-pointer">
-        <label class="modal-box relative" for="">
-          <h3 class="text-lg font-bold">Form Tambah File</h3>
 
-          <form @submit.prevent="update($page.props.user.id)">
-            <div class="mt-4">
-              <InputLabel for="file_cv" value="Upload CV (*pdf)" />
-              <input @input="file.file_cv = $event.target.files[0]" id="file_cv" type="file"
-                class="file-input file-input-bordered file-input-primary w-full max-w-xs mt-1" />
-              <InputError class="mt-2" :message="errors.file_cv" />
-            </div>
-
-            <div class="mt-4">
-              <InputLabel for="file_porto" value="Upload Porto Folio (tidak wajib)" />
-              <input @input="file.file_porto = $event.target.files[0]" id="file_porto" type="file"
-                class="file-input file-input-bordered file-input-primary w-full max-w-xs mt-1" />
-              <InputError class="mt-2" :message="errors.file_porto" />
-            </div>
-
-            <button :class="{ 'opacity-25': file.processing }" :disabled="file.processing"
-              class="mt-3 bg-primary text-white p-2 rounded-md cursor-pointer">Submit</button>
-          </form>
-        </label>
-      </label>
 
       <div v-if=status class="flex flex-col items-start gap-5 mt-5">
         <div>
@@ -150,9 +173,9 @@ const destroy = (hparam) => {
                       <td>
                         <a class="text-xs font-semibold inline-block py-1 px-2 rounded text-indigo-600 bg-indigo-200 uppercase last:mr-0 mr-1"
                           :href="'/' + file.file_cv" download>Download</a>
-                          <form @submit.prevent="destroy('cv')">
+                        <form @submit.prevent="destroy('cv')">
                           <input type="hidden" value="">
-                          <button class="badge bg-danger">Delete</button>
+                          <button class="badge bg-red-500 border-none">Delete</button>
                         </form>
                       </td>
                     </tr>
@@ -198,7 +221,7 @@ const destroy = (hparam) => {
                           :href="'/' + file.file_porto" download>Download</a>
                         <form @submit.prevent="destroy('porto')">
                           <input type="hidden" value="">
-                          <button class="badge bg-danger">Delete</button>
+                          <button class="badge bg-red-500 border-none">Delete</button>
                         </form>
                       </td>
                     </tr>

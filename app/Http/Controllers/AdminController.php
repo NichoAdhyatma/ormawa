@@ -6,6 +6,7 @@ use App\Models\Organisasi;
 use App\Models\Join;
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Http\Controllers\NotifController;
 use Inertia\Inertia;
 
 class AdminController extends Controller
@@ -86,6 +87,11 @@ class AdminController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $msg = $request->status ? 'Selamat Anda Diterima !' : 'Tetap Semangat !';
+        $join = Join::where('id', $id)->get('user_id');
+        $organisasi = Organisasi::where('id', $request->id)->get();
+        NotifController::notify($organisasi, $join[0]->user_id, $msg);
+
         Join::where('id', $id)->update([
             'status' => $request->status
         ]);

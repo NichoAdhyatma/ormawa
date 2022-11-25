@@ -52,7 +52,7 @@ const submit = () => {
       </div>
 
       <div v-if="!$page.props.user.file[0]">
-          <span class="text-blue-600 font-semibold">Aktifin dulu folder file mu..</span>
+        <span class="text-blue-600 font-semibold">Aktifin dulu folder file mu..</span>
       </div>
 
       <form v-else-if="$page.props.user.file[0].file_cv && $page.props.user.file[0].file_porto" @submit.prevent="submit"

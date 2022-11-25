@@ -75,6 +75,13 @@ const logout = () => {
                             <p>File</p>
                             </Link>
 
+                            <Link :href="route('notif')"
+                                :class="{ 'text-primary font-bold': $page.url === '/dashboard/notif' }"
+                                class="p-4 flex flex-col items-center  justify-center rounded-md hover:underline smooth-hover">
+                            <v-icon name="io-notifications"></v-icon>
+                            <p>Mail</p>
+                            </Link>
+
 
                         </nav>
 
@@ -243,7 +250,8 @@ const logout = () => {
                         </div>
 
 
-                        <main data-aos="fade-up" class="mb-10 sm:mb-0 sm:mt-5 grid gap-4 p-5 lg:pl-24 min-h-full justify-center">
+                        <main data-aos="fade-up"
+                            class="mb-10 sm:mb-0 sm:mt-5 grid gap-4 p-5 lg:pl-24 min-h-full justify-center">
                             <slot />
                         </main>
                     </div>
@@ -263,9 +271,14 @@ const logout = () => {
                             d="M6 18L18 6M6 6l12 12" />
                     </svg>
                 </label>
-                <p>Notifikasi</p>
-                <li><a>Sidebar Item 1</a></li>
-                <li><a>Sidebar Item 2</a></li>
+                <p class="font-bold">Notifikasi</p>
+                <li>
+                    <div class="bg-slate-300 flex flex-col items-start">
+                        <div class="text-blue-500 font-bold">PENERIMAAN</div>
+                        <div>Selamat anda diterima !! <div class="font-semibold">{{ $page.props.user.name }}</div>
+                        </div>
+                    </div>
+                </li>
 
             </ul>
         </div>

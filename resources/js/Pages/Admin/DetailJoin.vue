@@ -7,11 +7,13 @@ defineProps({
 })
 
 const form = useForm({
+  id: '',
   status: null
 })
 
-const setStatus = (status) => {
+const setStatus = (status, id) => {
   form.status = status
+  form.id = id
 }
 
 const submit = (id) => {
@@ -61,12 +63,12 @@ const submit = (id) => {
           </div>
           <div class="mt-auto flex gap-3">
             <form @submit.prevent="submit(join[0].id)" class="flex gap-2 mt-3">
-              <button for="my-modal-3" v-on:click="setStatus(true)" type="submit"
+              <button for="my-modal-3" v-on:click="setStatus(true, join[0].organisasi_id)" type="submit"
                 class="py-2 px-4  bg-indigo-600 hover:bg-indigo-700 focus:ring-indigo-500 focus:ring-offset-indigo-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg ">
                 Terima
               </button>
 
-              <button type="submit" v-on:click="setStatus(false)"
+              <button type="submit" v-on:click="setStatus(false, join[0].organisasi_id)"
                 class="py-2 px-4 flex justify-center items-center  bg-red-600 hover:bg-red-700 focus:ring-red-500 focus:ring-offset-red-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg">
                 Tolak
               </button>
