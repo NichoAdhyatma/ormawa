@@ -5,6 +5,7 @@ import TableLayout from "../../Components/TableLayout.vue";
 
 defineProps({
   items: Object,
+  acc: Number,
 })
 </script>
 
@@ -21,14 +22,15 @@ defineProps({
             <div class="stat">
               <div class="stat-figure text-primary">
               </div>
-              <div class="stat-title">Total SKS</div>
-              <div class="stat-value text-info">19</div>
-              <div class="stat-desc">SKS semester 3</div>
+              <div class="stat-title">Organisasi</div>
+              <div class="stat-value text-info">{{ acc }}</div>
+              <div class="stat-desc">yang di ikuti</div>
+              <div class="stat-desc"><Link><span class="text-blue-500">More</span></Link></div>
             </div>
 
             <div class="stat">
-              <div class="stat-title text-bold">IP</div>
-              <div class="stat-value text-secondary">3.75</div>
+              <div class="stat-title text-bold">Prestasi Lomba</div>
+              <div class="stat-value text-secondary">1</div>
               <div class="stat-desc">Total Point Credit</div>
             </div>
 

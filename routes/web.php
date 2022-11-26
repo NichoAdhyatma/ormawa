@@ -55,6 +55,8 @@ Route::middleware([
     Route::resource('/dashboard/file', FileController::class);
     Route::post('/file/delete', [FileController::class, 'deleteFile']);
     Route::get('/dashboard/notif', [NotifController::class, 'index'])->name('notif');
+    Route::post('/dashboard/notif/{notif}', [NotifController::class, 'markAsRead'])->name('notif.read');
+    Route::delete('/dashboard/notif/{notif}', [NotifController::class, 'destroy'])->name('notif.destroy');
 });
 
 // Route::get('/template', function () {
@@ -66,8 +68,3 @@ Route::middleware('guest:admin')->group(function () {
     Route::post('/admin-login', [AuthAdmin::class, 'authenticate'])->name('admin.auth');
 });
 
-Route::get('/join/{join}', [JoinController::class, 'getJoin']);
-Route::get('/notify', [NotifController::class, 'notify']);
-Route::get('/pdf', function() {
-    return Inertia::render('Dashboard/PdfReport');
-});

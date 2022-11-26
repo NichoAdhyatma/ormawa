@@ -16,6 +16,7 @@ import {
     MdFolderoffSharp,
     IoNotifications,
     IoArrowBack,
+    MdDeleteRound,
 } from "oh-vue-icons/icons";
 import VueSweetalert2 from 'vue-sweetalert2';
 import 'sweetalert2/dist/sweetalert2.min.css';
@@ -52,6 +53,7 @@ addIcons(
     MdFolderoffSharp,
     IoNotifications,
     IoArrowBack,
+    MdDeleteRound,
 );
 // InertiaProgress.init({ color: "blue" });
 InertiaProgress.init({

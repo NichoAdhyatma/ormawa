@@ -18,9 +18,10 @@ class OrmawaController extends Controller
     public function index()
     {
         $item = Join::where('user_id', Auth::user()->id)->get();
-
+        $acc = Join::where('user_id', Auth::user()->id)->where('status', true)->count();
         return Inertia::render('Dashboard/MyOrmawa', [
-            'items' => $item
+            'items' => $item,
+            'acc' => $acc,
         ]);
     }
 

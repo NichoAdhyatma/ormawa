@@ -132,8 +132,6 @@ class FileController extends Controller
      */
     public function destroy(Request $request, $id)
     {
-        
-
         return $request;
     }
 
