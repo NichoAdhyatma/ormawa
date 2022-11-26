@@ -68,3 +68,6 @@ Route::middleware('guest:admin')->group(function () {
 
 Route::get('/join/{join}', [JoinController::class, 'getJoin']);
 Route::get('/notify', [NotifController::class, 'notify']);
+Route::get('/pdf', function() {
+    return Inertia::render('Dashboard/PdfReport');
+});

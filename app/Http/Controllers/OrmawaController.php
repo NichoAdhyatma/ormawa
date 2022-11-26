@@ -63,8 +63,8 @@ class OrmawaController extends Controller
         $validatedData['user_id'] = Auth::user()->id;
 
         if ($validatedData) {
-            Join::create($validatedData);
-            return back()->with('message', 'anda sudah mendaftar!');
+            $join = Join::create($validatedData);
+            return redirect('/dashboard/ormawa/' . $join->id)->with('message', 'anda sudah mendaftar!');
         }
         return back()->with('fail', 'pendaftaran gagal...');
     }
@@ -75,11 +75,13 @@ class OrmawaController extends Controller
      * @param  \App\Models\Join  $join
      * @return \Illuminate\Http\Response
      */
-    public function show(Join $join)
+    public function show($id)
     {
-        return 'Ok!';
+        $join = Join::where('id', $id)->get();
+        return Inertia::render('Dashboard/PdfReport', [
+            'join' => $join[0]
+        ]);
     }
-
     /**
      * Show the form for editing the specified resource.
      *

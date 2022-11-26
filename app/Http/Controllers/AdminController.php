@@ -87,7 +87,7 @@ class AdminController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $msg = $request->status ? 'Selamat Anda Diterima !' : 'Tetap Semangat !';
+        $msg = $request->status ? 'Selamat Anda Diterima !' : 'Ditolak !';
         $join = Join::where('id', $id)->get('user_id');
         $organisasi = Organisasi::where('id', $request->id)->get();
         NotifController::notify($organisasi, $join[0]->user_id, $msg);
