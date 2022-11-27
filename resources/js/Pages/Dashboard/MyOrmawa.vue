@@ -25,7 +25,7 @@ defineProps({
               <div class="stat-title">Organisasi</div>
               <div class="stat-value text-info">{{ acc }}</div>
               <div class="stat-desc">yang di ikuti</div>
-              <div class="stat-desc"><Link><span class="text-blue-500">More</span></Link></div>
+              <div class="stat-desc"><Link :href="route('organisasi.index')"><span class="text-blue-500">More</span></Link></div>
             </div>
 
             <div class="stat">
@@ -59,7 +59,7 @@ defineProps({
         </p>
       </div>
 
-      <TableLayout class="p-3">
+      <TableLayout>
         <template #table>
           <div class="overflow-x-auto w-full mt-3">
             <table class="table mx-auto">
@@ -122,25 +122,6 @@ defineProps({
         </template>
       </TableLayout>
 
-      <div class="mt-7">
-        <div class="text-center text-2xl text-semibold">Organisasi yang di ikuti</div>
-        <div class="flex mt-6">
-          <div class="card w-96 bg-base-100 shadow-xl">
-            <figure><img src="https://placeimg.com/400/225/arch" alt="Shoes" /></figure>
-            <div class="card-body">
-              <h2 class="card-title">
-                Hima
-                <div class="badge badge-secondary">NEW</div>
-              </h2>
-              <p>If a dog chews shoes whose shoes does he choose?</p>
-              <div class="card-actions justify-end">
-                <div class="badge badge-outline">Fashion</div>
-                <div class="badge badge-outline">Products</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
     </main>
   </AppLayout>
 </template>

@@ -246,7 +246,7 @@ const logout = () => {
 
 
                     <main data-aos="fade-up"
-                        class="mb-10 sm:mb-0 sm:mt-5 grid gap-4 p-5 lg:pl-24 min-h-screen justify-center">
+                        class="mb-10 sm:mb-0 sm:mt-5 grid gap-4 p-5 lg:pl-24 min-h-screen justify-center max-w-7xl mx-auto">
                         <slot />
                     </main>
                 </div>

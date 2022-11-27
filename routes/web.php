@@ -57,6 +57,7 @@ Route::middleware([
     Route::get('/dashboard/notif', [NotifController::class, 'index'])->name('notif');
     Route::post('/dashboard/notif/{notif}', [NotifController::class, 'markAsRead'])->name('notif.read');
     Route::delete('/dashboard/notif/{notif}', [NotifController::class, 'destroy'])->name('notif.destroy');
+    Route::resource('dashboard/organisasi', OrganisasiController::class);
 });
 
 // Route::get('/template', function () {

@@ -17,7 +17,7 @@ defineProps({
       <div class="w-screen p-3">
         <div data-aos="fade-left" data-aos-duration="500" class="flex justify-center gap-4 flex-wrap items-stretch">
           <div v-for="item in items" class="card w-96 bg-base-100 shadow-xl">
-            <figure><img :src="item.photo_url" class="w-52 h-48" alt="Shoes" /></figure>
+            <figure><img :src="item.photo_url" class="w-52 h-48" alt="{{ item.name }}" /></figure>
             <div class="card-body">
               <h2 class="card-title">
                 {{ item.name }}

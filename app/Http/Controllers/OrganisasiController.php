@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Join;
 use Inertia\Inertia;
-use Illuminate\Support\Facades\Route;
 use Inertia\Controller;
 use App\Models\Organisasi;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
 use App\Http\Requests\StoreOrganisasiRequest;
 use App\Http\Requests\UpdateOrganisasiRequest;
 
@@ -18,7 +20,11 @@ class OrganisasiController extends Controller
      */
     public function index()
     {
-        
+        $join = Join::where('status', true)
+        ->where('user_id', Auth::user()->id)->get();
+        return Inertia::render('Dashboard/Organisasi', [
+            'organisasi' => $join,
+        ]);
     }
 
     /**

@@ -150,7 +150,7 @@ class DatabaseSeeder extends Seeder
                         menjadi sarana untuk pengembangan diri menuju pribadi yang lebih baik.',
             'misi' => '1. Mengembangkan bakat dalam permainan bola basket melalui latihan dan kompetisi
                         2. Membangun unit kegiatan mahasiswa yang aktif dan berguna bagi Politeknik Elektronika Negeri Surabaya',
-            'photo_url' => ''
+            'photo_url' => '/organisasi-photos/basket.png'
         ]);
         
         Organisasi::factory()->create([
@@ -174,7 +174,7 @@ class DatabaseSeeder extends Seeder
                         tersalurkan dari UKM ini serta terciptanya mahasiswa PENS yang berkarakter dan unggul dalam Prestasi di bidang olahraga bulutangkis.',
             'visi' => 'ini visi himpunan',
             'misi' => 'ini misi himpunan',
-            'photo_url' => ''
+            'photo_url' => '/organisasi-photos/badminton.jpg'
         ]);
 
         Organisasi::factory()->create([
