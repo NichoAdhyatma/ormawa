@@ -22,6 +22,7 @@ import Welcome from '@/Components/Welcome.vue';
                             <span>Logged in</span>
                             <span>
                                 {{ $page.props.user.name}}
+                            
                             </span>
                         </div>
                     </div>

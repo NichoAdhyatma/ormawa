@@ -34,9 +34,9 @@ const logout = () => {
 <template>
     <div :data-theme="theme">
         <div class="bg-base-100 flex items-center justify-center min-h-full">
+
             <Head :title="title" />
-            <div
-                class="bg-base-200 flex-1 flex flex-col space-y-5 lg:space-y-0 lg:flex-row lg:space-x-10 sm:p-6">
+            <div class="bg-base-200 flex-1 flex flex-col space-y-5 lg:space-y-0 lg:flex-row lg:space-x-10 sm:p-6">
                 <!-- Navigation -->
                 <div
                     class="bg-base-300 z-10 px-2 lg:px-4 py-2 lg:py-10 sm:rounded-r-xl flex lg:flex-col justify-between fixed top-0 min-w-full sm:static sm:min-w-0 lg:fixed lg:left-0 lg:min-w-0 lg:min-h-screen">
@@ -71,12 +71,15 @@ const logout = () => {
                         <p>File</p>
                         </Link>
 
-                        <Link :href="route('notif')"
-                            :class="{ 'text-primary font-bold': $page.url === '/dashboard/notif' }"
-                            class="p-4 flex flex-col items-center  justify-center rounded-md hover:underline smooth-hover">
-                        <v-icon name="io-notifications"></v-icon>
-                        <p>Mail</p>
-                        </Link>
+                        <div class="indicator">
+                            <span class="indicator-item badge badge-secondary">{{ $page.props.attr.notif}}</span>
+                            <Link :href="route('notif')"
+                                :class="{ 'text-primary font-bold': $page.url === '/dashboard/notif' }"
+                                class="p-4 flex flex-col items-center  justify-center rounded-md hover:underline smooth-hover">
+                            <v-icon name="io-notifications"></v-icon>
+                            <p>Mail</p>
+                            </Link>
+                        </div>
 
 
                     </nav>

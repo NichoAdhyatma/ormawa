@@ -72,4 +72,5 @@ class User extends Authenticatable
     public function jurusan() {
         return $this->belongsTo(Jurusan::class, 'jurusan_id');
     }
+
 }

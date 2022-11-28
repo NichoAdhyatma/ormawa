@@ -15,10 +15,10 @@ class NotifController extends Controller
 
     public function index()
     {
-        $user = User::where('id', Auth::user()->id)->first();
+        $user = User::find(Auth::user()->id);
 
         return Inertia::render('Dashboard/Notif', [
-            'user' => $user->notifications,
+            'users' => $user->notifications,
         ]);
     }
 

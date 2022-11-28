@@ -46,6 +46,7 @@ const logout = () => {
         <div class="ml-5 hidden md:flex gap-5 align-items-center font-semibold">
           <Link :href="route('admin.mahasiswa')">Mahasiswa</Link>
           <Link :href="'/admin'">Organisasi</Link>
+          <Link :href="route('struktur.index')">Struktur Organisasi</Link>
         </div>
       </div>
 
@@ -62,6 +63,9 @@ const logout = () => {
       </div>
 
     </div>
+    <header class="mt-10 text-3xl text-center">
+      <slot name="title"/>
+    </header>
     <main class="max-w-7xl min-h-screen mx-auto pb-5">
       <div class="flex flex-col items-center gap-5 p-4">
         <slot name="content" />

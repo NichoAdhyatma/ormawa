@@ -2,15 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Join;
 use Inertia\Inertia;
 use Inertia\Controller;
 use App\Models\Organisasi;
-use Illuminate\Support\Facades\Auth;
-use App\Http\Requests\StoreOrganisasiRequest;
-use App\Http\Requests\UpdateOrganisasiRequest;
+use Illuminate\Http\Request;
 
-class OrganisasiController extends Controller
+class StrukturController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,10 +16,9 @@ class OrganisasiController extends Controller
      */
     public function index()
     {
-        $join = Join::where('status', true)
-        ->where('user_id', Auth::user()->id)->get();
-        return Inertia::render('Dashboard/Organisasi', [
-            'organisasi' => $join,
+        $organisasi = Organisasi::all();
+        return Inertia::render('Admin/Struktur',  [
+            'organisasi' => $organisasi
         ]);
     }
 
@@ -39,10 +35,10 @@ class OrganisasiController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreOrganisasiRequest  $request
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreOrganisasiRequest $request)
+    public function store(Request $request)
     {
         //
     }
@@ -50,21 +46,21 @@ class OrganisasiController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Organisasi  $organisasi
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Organisasi $organisasi)
+    public function show($id)
     {
-        //  
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Organisasi  $organisasi
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Organisasi $organisasi)
+    public function edit($id)
     {
         //
     }
@@ -72,11 +68,11 @@ class OrganisasiController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateOrganisasiRequest  $request
-     * @param  \App\Models\Organisasi  $organisasi
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateOrganisasiRequest $request, Organisasi $organisasi)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -84,10 +80,10 @@ class OrganisasiController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Organisasi  $organisasi
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Organisasi $organisasi)
+    public function destroy($id)
     {
         //
     }

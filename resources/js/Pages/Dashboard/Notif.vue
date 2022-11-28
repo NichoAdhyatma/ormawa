@@ -4,7 +4,7 @@ import TableLayoutVue from '../../Components/TableLayout.vue';
 import { Inertia } from '@inertiajs/inertia';
 
 defineProps({
-  user: Object
+  users: Object
 })
 
 const submit = (id) => {
@@ -40,7 +40,7 @@ const read = (id) => {
               </thead>
               <tbody>
                 <!-- row 1 -->
-                <tr v-for="(item, key) in user" :class="{ 'active': item.read_at }">
+                <tr v-for="(item, key) in users" :class="{ 'active': item.read_at }">
                   <th>{{ key + 1 }}</th>
                   <td>{{ item.data.msg }}</td>
                   <td>{{ item.data.organisasi_name }}</td>

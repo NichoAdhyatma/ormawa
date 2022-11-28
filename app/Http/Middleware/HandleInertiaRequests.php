@@ -2,8 +2,10 @@
 
 namespace App\Http\Middleware;
 
-use Illuminate\Http\Request;
+use App\Models\User;
 use Inertia\Middleware;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HandleInertiaRequests extends Middleware
 {
@@ -44,6 +46,15 @@ class HandleInertiaRequests extends Middleware
 
             'admin' => [
                 'tes' => 'ini admin'
+            ],
+
+            'attr' => [
+                'notif' => function () {
+                    if (Auth::user()) {
+                        $user = User::find(Auth::user()->id);
+                        return $user->unreadNotifications()->count();
+                    }
+                }
             ]
         ]);
     }

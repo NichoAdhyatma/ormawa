@@ -36,10 +36,15 @@ const submit = (id) => {
             <div class=" rounded-2xl flex flex-col gap-3 mb-3 text-xl">
               <p>Nama : {{ join[0].user.name }} </p>
               <p>Organisasi : {{ join[0].organisasi.name }}</p>
-              <p>File CV : {{ join[0].user.file[0].file_cv_name }} <a class="text-primary font-bold"
-                  :href="'/' + join[0].user.file[0].file_cv" download>Download</a></p>
-              <p>File Porto : {{ join[0].user.file[0].file_porto_name }} <a class="text-primary font-bold"
-                  :href="'/' + join[0].user.file[0].file_porto" download>Download</a></p>
+              <div v-if="join[0].user.file[0]">
+                <p>File CV : {{ join[0].user.file[0].file_cv_name }} <a class="text-primary font-bold mt-3"
+                    :href="'/' + join[0].user.file[0].file_cv" download>Download</a></p>
+                <p>File Porto : {{ join[0].user.file[0].file_porto_name }} <a class="text-primary font-bold"
+                    :href="'/' + join[0].user.file[0].file_porto" download>Download</a></p>
+              </div>
+              <div v-else class="text-gray-400">
+                Tidak Mengupload File
+              </div>
               <p>Status <span v-if="join[0].status">
                   <span
                     class="text-xs font-semibold inline-block py-1 px-2 rounded text-emerald-600 bg-emerald-200 uppercase last:mr-0 mr-1">
