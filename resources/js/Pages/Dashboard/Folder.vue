@@ -55,8 +55,6 @@ const update = (id) => {
     file_cv: file.file_cv,
     file_porto: file.file_porto,
   })
-  show.value = 'modal cursor-pointer hidden'
-
 }
 
 const destroy = (hparam) => {
@@ -81,7 +79,7 @@ const destroy = (hparam) => {
 <template>
   <input type="checkbox" id="my-modal-4" class="modal-toggle" />
   <label for="my-modal-4" :class="show">
-    <label :data-theme="theme" class="modal-box relative" for="">
+    <label :data-theme="theme" class="modal-box relative">
       <h3 class="text-lg font-bold">Form Tambah File</h3>
 
       <form @submit.prevent="update($page.props.user.id)">

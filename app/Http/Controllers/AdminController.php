@@ -25,7 +25,8 @@ class AdminController extends Controller
         ]);
     }
 
-    public function mahasiswa() {
+    public function mahasiswa()
+    {
         return Inertia::render('Admin/MahasiswaAdmin', [
             'users' => User::all()
         ]);
@@ -91,6 +92,10 @@ class AdminController extends Controller
         $join = Join::where('id', $id)->get('user_id');
         $organisasi = Organisasi::where('id', $request->id)->get();
         NotifController::notify($organisasi, $join[0]->user_id, $msg);
+
+        if (!$request->status) {
+            Join::find($id)->delete();
+        }
 
         Join::where('id', $id)->update([
             'status' => $request->status

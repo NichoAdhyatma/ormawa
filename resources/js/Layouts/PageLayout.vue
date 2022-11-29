@@ -18,8 +18,8 @@ if (localStorage.getItem("theme")) {
 
 const handleTheme = () => {
   if (theme.value == 'light') {
-    localStorage.setItem('theme', 'dark');
-    theme.value = 'dark'
+    localStorage.setItem('theme', 'night');
+    theme.value = 'night'
   }
   else {
     localStorage.setItem('theme', 'light')
@@ -173,7 +173,7 @@ const logout = (e) => {
         <PrimaryButton>Login Mahasiswa</PrimaryButton>
         </Link>
         <Link :href="route('admin.login')">
-          <PrimaryButton>Login Admin</PrimaryButton>
+        <PrimaryButton>Login Admin</PrimaryButton>
         </Link>
 
       </label>

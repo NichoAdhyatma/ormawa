@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Join;
+use App\Models\User;
 use Inertia\Inertia;
 use Inertia\Controller;
 use App\Models\Organisasi;
@@ -17,10 +18,12 @@ class OrganisasiController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    //halaman organisasi di user
     public function index()
     {
         $join = Join::where('status', true)
-        ->where('user_id', Auth::user()->id)->get();
+            ->where('user_id', Auth::user()->id)->get();
         return Inertia::render('Dashboard/Organisasi', [
             'organisasi' => $join,
         ]);
@@ -53,9 +56,17 @@ class OrganisasiController extends Controller
      * @param  \App\Models\Organisasi  $organisasi
      * @return \Illuminate\Http\Response
      */
-    public function show(Organisasi $organisasi)
+    public function show($idJoin)
     {
-        //  
+        $join = Join::where('id', $idJoin)->where('user_id', Auth::user()->id)->first();
+        $anggota = User::whereHas('join', function ($query) use($join) {
+            $query->where('organisasi_id', $join->organisasi_id);
+        })->get();
+
+        return Inertia::render('Dashboard/Forum', [
+            'join' => $join,
+            'anggota' => $anggota,
+        ]);
     }
 
     /**

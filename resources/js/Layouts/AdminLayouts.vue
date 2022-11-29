@@ -11,8 +11,8 @@ if (localStorage.getItem("theme")) {
 
 const handleTheme = () => {
   if (theme.value == 'light') {
-    localStorage.setItem('theme', 'dark');
-    theme.value = 'dark'
+    localStorage.setItem('theme', 'night');
+    theme.value = 'night'
   }
   else {
     localStorage.setItem('theme', 'light')
@@ -64,7 +64,7 @@ const logout = () => {
 
     </div>
     <header class="mt-10 text-3xl text-center">
-      <slot name="title"/>
+      <slot name="title" />
     </header>
     <main class="max-w-7xl min-h-screen mx-auto pb-5">
       <div class="flex flex-col items-center gap-5 p-4">

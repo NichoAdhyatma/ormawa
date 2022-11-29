@@ -17,8 +17,8 @@ if (localStorage.getItem("theme")) {
 
 const handleTheme = () => {
     if (theme.value == 'light') {
-        localStorage.setItem('theme', 'dark');
-        theme.value = 'dark'
+        localStorage.setItem('theme', 'night');
+        theme.value = 'night'
     }
     else {
         localStorage.setItem('theme', 'light')
@@ -29,6 +29,7 @@ const handleTheme = () => {
 const logout = () => {
     Inertia.post(route('logout'));
 };
+
 
 </script>
 <template>
@@ -72,7 +73,7 @@ const logout = () => {
                         </Link>
 
                         <div class="indicator">
-                            <span class="indicator-item badge badge-secondary">{{ $page.props.attr.notif}}</span>
+                            <span class="indicator-item badge badge-secondary">{{ $page.props.attr.notif }}</span>
                             <Link :href="route('notif')"
                                 :class="{ 'text-primary font-bold': $page.url === '/dashboard/notif' }"
                                 class="p-4 flex flex-col items-center  justify-center rounded-md hover:underline smooth-hover">

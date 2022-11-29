@@ -3,7 +3,7 @@ import AppLayout from "@/Layouts/AppLayout.vue";
 import { Link } from "@inertiajs/inertia-vue3";
 
 defineProps({
-  organisasi: Object
+  organisasi: Object,
 })
 </script>
 
@@ -11,9 +11,14 @@ defineProps({
   <AppLayout>
     <template #title>
       <div class="flex gap-2 items-center">
-        <Link :href="route('ormawa.index')">
-        <v-icon name="io-arrow-back" scale="2"></v-icon>
-        </Link> Ormawa Management / Organisasi
+        <div class="text-2xl breadcrumbs">
+          <ul>
+            <li>
+              <Link :href="route('ormawa.index')">Ormawa Management</Link>
+            </li>
+            <li class="text-primary">Organisasi</li>
+          </ul>
+        </div>
       </div>
     </template>
     <main>
@@ -26,7 +31,7 @@ defineProps({
                 item.organisasi.name
             }}</h2>
             <div class="mt-5 flex gap-3 items-center">
-              <button class="btn btn-primary">Masuk Forum</button>
+              <Link :href="`/dashboard/organisasi/` + item.id " class="btn btn-primary">Masuk Forum</Link>
               <button class="btn bg-red-500 text-white hover:bg-red-400 border-none">Keluar Organisasi</button>
             </div>
           </div>

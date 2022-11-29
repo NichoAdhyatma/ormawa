@@ -9,21 +9,22 @@ if (localStorage.getItem("theme")) {
 
 const handleTheme = () => {
   if (theme.value == 'light') {
-    localStorage.setItem('theme', 'dark');
-    theme.value = 'dark'
+    localStorage.setItem('theme', 'night');
+    theme.value = 'night'
   }
   else {
     localStorage.setItem('theme', 'light')
     theme.value = 'light'
   }
 }
+
 </script>
 
 <template>
   <!-- component -->
   <main :data-theme="theme" class="min-h-screen">
     <div class="max-w-7xl  flex justify-center">
-        <p>Login</p>
+      <p>Login</p>
     </div>
   </main>
 </template>
