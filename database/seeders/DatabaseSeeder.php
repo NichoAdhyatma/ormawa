@@ -24,6 +24,7 @@ class DatabaseSeeder extends Seeder
         \App\Models\User::factory()->create([
             'name' => 'Test User',
             'username' => 'tes',
+            'jurusan_id' => '1',
             'email' => 'test@example.com',
             'password' => Hash::make('12345')
         ]);
@@ -38,6 +39,7 @@ class DatabaseSeeder extends Seeder
         Organisasi::factory()->create([
             'name' => 'Himpunan Mahasiswa Teknik Informatika',
             'category_id' => '1',
+            'jurusan_id' => '1',
             'slug' => 'HIMIT',
             'desc' => 'ini deskripsi himpunan',
             'visi' => 'ini visi himpunan',
@@ -50,6 +52,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'Himpunan Mahasiswa Teknik Elektronika',
             'slug' => 'HIMA ELKA',
             'category_id' => '1',
+            'jurusan_id' => '2',
             'desc' => 'ini deskripsi himpunan',
             'visi' => 'ini visi himpunan',
             'misi' => 'ini misi himpunan',

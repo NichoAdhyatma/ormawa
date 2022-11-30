@@ -19,6 +19,8 @@ return new class extends Migration
             $table->string('slug')->nullable();
             $table->foreignId('category_id');
             $table->foreignId('jurusan_id')->nullable();
+            $table->foreignId('ketua')->unique()->nullable();
+            $table->foreignId('wakil')->unique()->nullable();
             $table->string('visi');
             $table->string('misi');
             $table->text('desc');

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Inertia\Inertia;
 use Inertia\Controller;
 use App\Models\Organisasi;
@@ -51,7 +52,15 @@ class StrukturController extends Controller
      */
     public function show($id)
     {
-        //
+        $org = Organisasi::find($id);
+        $member = User::whereHas('join', function ($query) use($id) {
+            $query->where('organisasi_id', $id)->where('status', true);
+        })->get();
+
+        return Inertia::render('Admin/DetailStruktur', [
+            'org' => $org,
+            'member' => $member,
+        ]);
     }
 
     /**

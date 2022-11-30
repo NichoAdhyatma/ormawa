@@ -1,6 +1,6 @@
 <script setup>
 import { Inertia } from '@inertiajs/inertia';
-import { Link } from '@inertiajs/inertia-vue3';
+import { Head, Link } from '@inertiajs/inertia-vue3';
 import { ref } from 'vue';
 
 const theme = ref('light');
@@ -27,6 +27,7 @@ const logout = () => {
 
 <template>
   <div :data-theme="theme">
+    <Head :title="title" />
     <!--Admin-->
     <div class="navbar bg-base-100 w-full">
       <div class="navbar-start">
@@ -46,7 +47,7 @@ const logout = () => {
         <div class="ml-5 hidden md:flex gap-5 align-items-center font-semibold">
           <Link :href="route('admin.mahasiswa')">Mahasiswa</Link>
           <Link :href="'/admin'">Organisasi</Link>
-          <Link :href="route('struktur.index')">Struktur Organisasi</Link>
+          <Link :href="route('admin-struktur.index')">Struktur Organisasi</Link>
         </div>
       </div>
 

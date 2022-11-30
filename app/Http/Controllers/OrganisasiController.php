@@ -60,7 +60,7 @@ class OrganisasiController extends Controller
     {
         $join = Join::where('id', $idJoin)->where('user_id', Auth::user()->id)->first();
         $anggota = User::whereHas('join', function ($query) use($join) {
-            $query->where('organisasi_id', $join->organisasi_id);
+            $query->where('organisasi_id', $join->organisasi_id)->where('status', true);
         })->get();
 
         return Inertia::render('Dashboard/Forum', [
