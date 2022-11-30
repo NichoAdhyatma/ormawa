@@ -6,6 +6,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use App\Models\Organisasi;
 use App\Models\Category;
+use App\Models\CategoryPrestasi;
 use App\Models\Join;
 use App\Models\Jurusan;
 use Illuminate\Support\Facades\Hash;
@@ -226,6 +227,22 @@ class DatabaseSeeder extends Seeder
         ]);
         Jurusan::create([
             'name' => 'Teknik Elektronika'
+        ]);
+
+        CategoryPrestasi::create([
+            'name' => 'Kota',
+        ]);
+        
+        CategoryPrestasi::create([
+            'name' => 'Provinsi',
+        ]);
+
+        CategoryPrestasi::create([
+            'name' => 'Nasional',
+        ]);
+
+        CategoryPrestasi::create([
+            'name' => 'International',
         ]);
     }
 }

@@ -13,6 +13,7 @@ use App\Http\Controllers\NotifController;
 use App\Http\Controllers\OrmawaController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\OrganisasiController;
+use App\Http\Controllers\PrestasiController;
 use App\Http\Controllers\StrukturController;
 
 /*
@@ -60,6 +61,7 @@ Route::middleware([
     Route::post('/dashboard/notif/{notif}', [NotifController::class, 'markAsRead'])->name('notif.read');
     Route::delete('/dashboard/notif/{notif}', [NotifController::class, 'destroy'])->name('notif.destroy');
     Route::resource('/dashboard/organisasi', OrganisasiController::class);
+    Route::resource('/dashboard/prestasi', PrestasiController::class );
 });
 
 Route::middleware('guest:admin')->group(function () {

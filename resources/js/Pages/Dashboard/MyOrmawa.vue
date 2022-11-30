@@ -25,13 +25,18 @@ defineProps({
               <div class="stat-title">Organisasi</div>
               <div class="stat-value text-info">{{ acc }}</div>
               <div class="stat-desc">yang di ikuti</div>
-              <div class="stat-desc"><Link :href="route('organisasi.index')"><span class="text-blue-500">More</span></Link></div>
+              <div class="stat-desc">
+                <Link :href="route('organisasi.index')"><span class="text-blue-500">More</span></Link>
+              </div>
             </div>
 
             <div class="stat">
               <div class="stat-title text-bold">Prestasi Lomba</div>
               <div class="stat-value text-secondary">1</div>
-              <div class="stat-desc">Total Point Credit</div>
+              <div class="stat-desc">Total Point Credits</div>
+              <div class="stat-value">
+                <Link :href="route('prestasi.index')" class="badge badge-xl badge-primary font-bold">Detail</Link>
+              </div>
             </div>
 
             <div class="stat">
@@ -112,8 +117,8 @@ defineProps({
                     </span>
                   </td>
                   <th>
-                    <Link :href="'/dashboard/ormawa/'+ item.id "><button class="btn btn-info btn-xs">Details</button></Link>
-                    
+                    <Link :href="'/dashboard/ormawa/' + item.id"><button class="btn btn-info btn-xs">Details</button>
+                    </Link>
                   </th>
                 </tr>
               </tbody>

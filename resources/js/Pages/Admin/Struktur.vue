@@ -2,7 +2,6 @@
 import AdminLayout from "@/Layouts/AdminLayouts.vue"
 import { Link } from "@inertiajs/inertia-vue3";
 
-
 defineProps({
   organisasi: Object
 })

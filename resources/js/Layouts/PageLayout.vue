@@ -6,8 +6,8 @@ import { Inertia } from '@inertiajs/inertia';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import NavLink from "@/Components/NavLink.vue";
 import ResponsiveNavLink from '@/Components/ResponsiveNavLink.vue';
-import Dropdown from '@/Components/Dropdown.vue';
-import DropdownLink from '@/Components/DropdownLink.vue';
+// import Dropdown from '@/Components/Dropdown.vue';
+// import DropdownLink from '@/Components/DropdownLink.vue';
 
 const theme = ref('light');
 const showingNavigationDropdown = ref(false);
