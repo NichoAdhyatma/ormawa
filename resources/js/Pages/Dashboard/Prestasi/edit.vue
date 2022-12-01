@@ -4,17 +4,34 @@ import { Link, useForm } from '@inertiajs/inertia-vue3';
 import InputError from '@/Components/InputError.vue';
 import InputLabel from '@/Components/InputLabel.vue';
 import TextInput from '@/Components/TextInput.vue';
+import { Inertia } from '@inertiajs/inertia';
 
-defineProps({
+const props = defineProps({
   data: Object,
   type: Object,
 })
 
 const form = useForm({
-  name: '',
+  name: null,
   sertif: null,
-  category_id: '',
+  category_prestasi_id: null,
 })
+
+const update = (id, name) => {
+  Inertia.post('/dashboard/prestasi/' + `${id}`, {
+    _method: 'put',
+    sertif: form.sertif,
+    name: form.name,
+    category_prestasi_id: form.category_prestasi_id,
+  })
+}
+
+const init = async () => {
+  form.name = props.data.name;
+  form.category_prestasi_id = props.data.category_prestasi_id;
+}
+
+init();
 
 </script>
 
@@ -41,16 +58,17 @@ const form = useForm({
           </div>
         </div>
 
-        <form action="" class="max-w-5xl">
+        <form @submit.prevent="update(data.id, form.name)" class="max-w-5xl">
           <div class="mt-4">
             <InputLabel for="name" value="Judul Prestasi" />
-            <TextInput id="name" v-model="form.name" type="text" class="mt-1 block w-full" :value="data.name" />
+            <TextInput id="name" v-model="form.name" type="text" class="mt-1 block w-full" />
             <InputError class="mt-2" :message="form.errors.name" />
+
           </div>
 
           <div class="mt-4">
             <InputLabel for="category" value="Tingkat Kategori Lomba" />
-            <select id="category" :v-model="(form.category_id = data.id)" class="select select-bordered w-full mt-5">
+            <select id="category" v-model="form.category_prestasi_id" class="select select-bordered w-full mt-5">
               <option v-for="item in type" :value="item.id" :selected="(item.id == data.category_prestasi_id)">
                 {{
                     item.name
@@ -62,9 +80,10 @@ const form = useForm({
           </div>
 
           <div class="mt-4">
+            <div>File Sebelum : <span class="text-blue-500 font-bold">{{ data.sertif }}</span> </div>
             <InputLabel for="sertif" value="Ubah Bukti Sertifikat (*pdf / *png / *jpg)" />
             <input @input="(form.sertif = $event.target.files[0])" id="sertif" type="file"
-              class="file-input file-input-bordered file-input-primary w-full max-w-xs mt-1" />
+              class="file-input file-input-bordered file-input-primary w-full max-w-xs mt-1"/>
             <InputError class="mt-2" :message="form.errors.sertif" />
           </div>
 
@@ -74,3 +93,4 @@ const form = useForm({
     </main>
   </AppLayout>
 </template>
+

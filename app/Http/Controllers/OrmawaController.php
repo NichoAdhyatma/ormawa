@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Join;
 use App\Models\Organisasi;
+use App\Models\Prestasi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
@@ -19,9 +20,11 @@ class OrmawaController extends Controller
     {
         $item = Join::where('user_id', Auth::user()->id)->get();
         $acc = Join::where('user_id', Auth::user()->id)->where('status', true)->count();
+        $achv = Prestasi::where('user_id', Auth::user()->id)->count();
         return Inertia::render('Dashboard/MyOrmawa', [
             'items' => $item,
             'acc' => $acc,
+            'achive' => $achv
         ]);
     }
 

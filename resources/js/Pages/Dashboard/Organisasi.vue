@@ -1,10 +1,16 @@
 <script setup>
 import AppLayout from "@/Layouts/AppLayout.vue";
+import { Inertia } from "@inertiajs/inertia";
 import { Link } from "@inertiajs/inertia-vue3";
+
 
 defineProps({
   organisasi: Object,
 })
+
+const destroy = (id) => {
+Inertia.delete('/dashboard/organisasi/' + id)
+}
 </script>
 
 <template>
@@ -32,7 +38,10 @@ defineProps({
             }}</h2>
             <div class="mt-5 flex gap-3 items-center">
               <Link :href="`/dashboard/organisasi/` + item.id " class="btn btn-primary">Masuk Forum</Link>
-              <button class="btn bg-red-500 text-white hover:bg-red-400 border-none">Keluar Organisasi</button>
+              <form @submit.prevent="destroy(item.id)">
+
+                <button class="btn bg-red-500 text-white hover:bg-red-400 border-none">Keluar Organisasi</button>
+              </form>
             </div>
           </div>
         </div>

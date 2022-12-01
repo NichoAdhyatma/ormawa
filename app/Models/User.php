@@ -33,7 +33,7 @@ class User extends Authenticatable
         'password',
     ];
 
-    protected $with = ['file', 'jurusan'];
+    protected $with = ['file', 'jurusan', 'prestasi'];
 
     /**
      * The attributes that should be hidden for serialization.
@@ -75,6 +75,10 @@ class User extends Authenticatable
 
     public function join() {
         return $this->hasMany(Join::class);
+    }
+
+    public function prestasi() {
+        return $this->hasMany(Prestasi::class);
     }
 
 }

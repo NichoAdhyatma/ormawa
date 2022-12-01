@@ -98,8 +98,9 @@ class OrganisasiController extends Controller
      * @param  \App\Models\Organisasi  $organisasi
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Organisasi $organisasi)
+    public function destroy($id)
     {
-        //
+        Join::find($id)->delete();
+        return back()->with('message', 'Anda Keluar Organisasi');
     }
 }

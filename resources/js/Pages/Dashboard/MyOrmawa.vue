@@ -6,6 +6,7 @@ import TableLayout from "../../Components/TableLayout.vue";
 defineProps({
   items: Object,
   acc: Number,
+  achive: Number,
 })
 </script>
 
@@ -24,16 +25,17 @@ defineProps({
               </div>
               <div class="stat-title">Organisasi</div>
               <div class="stat-value text-info">{{ acc }}</div>
-              <div class="stat-desc">yang di ikuti</div>
-              <div class="stat-desc">
-                <Link :href="route('organisasi.index')"><span class="text-blue-500">More</span></Link>
+              <div class="stat-desc">Total Ormawa yang di ikuti</div>
+              <div class="stat-value">
+                <Link :href="route('organisasi.index')" class="badge badge-xl badge-primary font-bold"><span
+                  >More</span></Link>
               </div>
             </div>
 
             <div class="stat">
               <div class="stat-title text-bold">Prestasi Lomba</div>
-              <div class="stat-value text-secondary">1</div>
-              <div class="stat-desc">Total Point Credits</div>
+              <div class="stat-value text-secondary">{{ achive }}</div>
+              <div class="stat-desc">Total Achivement</div>
               <div class="stat-value">
                 <Link :href="route('prestasi.index')" class="badge badge-xl badge-primary font-bold">Detail</Link>
               </div>

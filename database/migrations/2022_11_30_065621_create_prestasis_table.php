@@ -19,6 +19,7 @@ return new class extends Migration
             $table->foreignId('category_prestasi_id');
             $table->string('name');          
             $table->string('sertif');
+            $table->string('sertif_path');
             $table->timestamps();
         });
     }

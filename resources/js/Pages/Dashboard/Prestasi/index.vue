@@ -129,7 +129,7 @@ const destroy = (id) => {
                     <td>
                       <v-icon name="ri-medal-fill"></v-icon> {{ item.category.name }}
                     </td>
-                    <td><a :href="'/' + item.sertif" class="hover:underline"><v-icon name="fc-file"
+                    <td><a :href="('/' + item.sertif_path)" class="hover:underline"><v-icon name="fc-file"
                           class="mr-1"></v-icon>{{ item.sertif }}</a></td>
                     <td class="flex gap-3 items-center">
                       <Link :href="'/dashboard/prestasi/' + item.id + '/edit'" class="btn btn-info btn-xs">Edit</Link>

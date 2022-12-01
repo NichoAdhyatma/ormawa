@@ -4,10 +4,11 @@ namespace App\Http\Controllers;
 
 use Inertia\Inertia;
 use Inertia\Controller;
+use App\Models\Prestasi;
 use Illuminate\Http\Request;
 use App\Models\CategoryPrestasi;
-use App\Models\Prestasi;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class PrestasiController extends Controller
 {
@@ -45,14 +46,14 @@ class PrestasiController extends Controller
      */
     public function store(Request $request)
     {
-
         $validatedData = $request->validate([
             'name' => 'required|max:255',
             'sertif' => 'required',
             'category_prestasi_id' => 'required',
         ]);
 
-        $validatedData['sertif'] = $request->file('sertif')->storeAs('sertif', $request->file('sertif')->getClientOriginalName(), 'public');
+        $validatedData['sertif_path'] = $request->file('sertif')->storeAs('sertif', $request->file('sertif')->getClientOriginalName(), 'public');
+        $validatedData['sertif'] = $request->file('sertif')->getClientOriginalName();
         $validatedData['user_id'] = Auth::user()->id;
 
         if ($validatedData) {
@@ -95,7 +96,30 @@ class PrestasiController extends Controller
      */
     public function update(Request $request, $id)
     {
-        return $request->sertif;
+        $prestasi = Prestasi::find($id);
+
+        $validatedData = $request->validate([
+            'name' => 'required|max:255',
+            'category_prestasi_id' => 'required',
+            'sertif' => 'nullable|mimes:pdf,jpg,png',
+        ]);
+
+        if($prestasi->sertif_path != null && isset($request->sertif)) {
+            Storage::delete($request->sertif);
+        }
+
+        if (isset($request->sertif)) {
+            $validatedData['sertif_path'] = $request->file('sertif')->storeAs('sertif', $request->file('sertif')->getClientOriginalName(), 'public');
+            $validatedData['sertif'] = $request->file('sertif')->getClientOriginalName();
+        }
+        else {
+            $validatedData['sertif_path'] = $prestasi->sertif_path;
+            $validatedData['sertif'] = $prestasi->sertif;
+        }
+
+        Prestasi::where('id', $id)->update($validatedData);
+
+        return redirect(route('prestasi.index'))->with('message', 'berhasil di ubah!');
     }
 
     /**

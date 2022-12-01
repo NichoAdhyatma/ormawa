@@ -86,9 +86,7 @@ const logout = () => {
                     </nav>
 
                     <div class="flex items-center flex-row space-x-2 lg:space-x-0 lg:flex-col lg:space-y-2">
-                        <label for="my-drawer" class="btn btn-square btn-ghost lg:hidden">
-                            <v-icon name="io-notifications"></v-icon>
-                        </label>
+                      
                         <label
                             class="swap swap-rotate bg-base-300 p-2 rounded-md hover:text-base-content/50 smooth-hover sm:mt-0 mr-3 lg:hidden">
                             <!-- this hidden checkbox controls the state -->
