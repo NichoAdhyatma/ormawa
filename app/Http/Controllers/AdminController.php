@@ -7,6 +7,7 @@ use App\Models\Join;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\NotifController;
+use App\Models\Prestasi;
 use Inertia\Inertia;
 
 class AdminController extends Controller
@@ -29,6 +30,12 @@ class AdminController extends Controller
     {
         return Inertia::render('Admin/MahasiswaAdmin', [
             'users' => User::all()
+        ]);
+    }
+
+    public function prestasi() {
+        return Inertia::render('Admin/RekapPrestasi', [
+            'prestasi' => Prestasi::get()
         ]);
     }
 

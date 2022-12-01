@@ -33,7 +33,7 @@ class User extends Authenticatable
         'password',
     ];
 
-    protected $with = ['file', 'jurusan', 'prestasi'];
+    protected $with = ['file', 'jurusan'];
 
     /**
      * The attributes that should be hidden for serialization.

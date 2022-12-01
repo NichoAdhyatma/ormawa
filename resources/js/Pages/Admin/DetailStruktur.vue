@@ -50,7 +50,7 @@ const submit = (e) => {
       <div v-if="org" class="p-6 sm:p-12 max-w-4xl">
         <div class="flex flex-col space-y-4 md:space-y-0 md:space-x-6 md:flex-row">
           <img :src="org.photo_url" alt=""
-            class="self-center flex-shrink-0 w-24 h-24 border rounded-full md:justify-self-start bg-gray-500 border-gray-300">
+            class="flex-shrink-0 w-24 h-24 border rounded-full  border-gray-300">
           <div class="flex flex-col">
             <h4 class="text-lg font-semibold text-center md:text-left">{{ org.name }}</h4>
             <p class="">{{ org.visi }}</p>

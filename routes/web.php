@@ -42,6 +42,7 @@ Route::middleware([
     Route::post('/logout-admin', [AuthAdmin::class, 'logout'])->name('admin.logout');
     Route::get('/admin-mahasiswa', [AdminController::class, 'mahasiswa'])->name('admin.mahasiswa');
     Route::resource('/admin-struktur', StrukturController::class);
+    Route::get('/rekap-prestasi', [AdminController::class, 'prestasi'])->name('rekap.prestasi');
 });
 
 Route::middleware([

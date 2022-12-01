@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('prestasis', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id');
+            $table->foreignId('user_id')->index();
             $table->foreignId('category_prestasi_id');
             $table->string('name');          
             $table->string('sertif');
